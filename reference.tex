@@ -1,0 +1,317 @@
+\documentclass[10pt,landscape,twocolumn]{article}
+
+% Page setup
+\usepackage[landscape,top=1in,bottom=0.5in,left=0.5in,right=0.5in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+% Math packages for formulas
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% Code listings
+\usepackage{listings}
+\usepackage{xcolor}
+
+% Headers and footers
+\usepackage{fancyhdr}
+
+% Index/Table of contents
+\usepackage{tocloft}
+\usepackage{hyperref}
+
+% Graphics
+\usepackage{graphicx}
+
+% Multiple columns for title page
+\usepackage{multicol}
+
+% Listings configuration for C++
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{green!50!black}\itshape,
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    numbersep=5pt,
+    backgroundcolor=\color{white},
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    frame=single,
+    tabsize=2,
+    captionpos=b,
+    breaklines=true,
+    breakatwhitespace=false,
+    escapeinside={\%*}{*)},
+    morekeywords={*,...}
+}
+
+% Header and footer configuration
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textbf{Heap Thrust}}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% Reduce spacing
+\setlength{\columnsep}{0.3in}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+% ToC formatting
+\setlength{\cftbeforesecskip}{0.2em}
+\setlength{\cftbeforesubsecskip}{0.1em}
+
+\begin{document}
+
+% Title page (single column)
+\onecolumn
+\thispagestyle{empty} % No header on cover page
+\begin{center}
+    \vspace*{2cm}
+    
+    {\Huge \textbf{Heap Thrust Reference 2026}}
+    
+    \vspace{1.5cm}
+    
+    {\Large ICPC Reference (Date 1 version)}
+    
+    \vspace{2cm}
+    
+    {\large \textbf{Team Members:}}
+    
+    \vspace{0.5cm}
+    
+    {\large
+    Enrique Job Calderón (ksobrenat32)\\
+    Luis Daniel Salazar (luisdakan)\\
+    Gustavo Valenzuela (GusTimeTraveler)\\
+    }
+    
+    \vspace{2cm}
+    
+    {\large \textbf{Institution:}}
+    
+    {\large Facultad de Ingeniería, UNAM - CPCFI}
+    
+    \vspace{2cm}
+    
+    {\large \today}
+    
+\end{center}
+
+\newpage
+
+% Table of Contents
+\setcounter{page}{1} % Start page numbering from ToC
+\pagestyle{fancy} % Enable header starting from ToC
+\begin{multicols}{2}
+\tableofcontents
+\end{multicols}
+
+\newpage
+
+% Switch to two-column format
+\twocolumn
+
+% ========================================
+% SECTION: Graph Theory
+% ========================================
+\section{Graph Theory}
+
+\subsection{Depth First Search (DFS)}
+Example implementation:
+\lstinputlisting[caption=DFS Implementation]{code/GraphTheory/dfs.cpp}
+
+\subsection{Breadth First Search (BFS)}
+Example implementation:
+\lstinputlisting[caption=BFS Implementation]{code/GraphTheory/bfs.cpp}
+
+% Add more graph theory algorithms as needed
+
+% ========================================
+% SECTION: Data Structures
+% ========================================
+\section{Data Structures}
+
+\subsection{Segment Tree}
+Example implementation:
+\lstinputlisting[caption=Segment Tree]{code/DataStructures/segment_tree.cpp}
+
+\subsection{Fenwick Tree (BIT)}
+Example implementation:
+\lstinputlisting[caption=Fenwick Tree]{code/DataStructures/fenwick_tree.cpp}
+
+% ========================================
+% SECTION: Range Queries
+% ========================================
+\section{Range Queries}
+
+\subsection{Sparse Table}
+Example implementation:
+\lstinputlisting[caption=Sparse Table]{code/RangeQueries/sparse_table.cpp}
+
+% ========================================
+% SECTION: Mathematics
+% ========================================
+\section{Mathematics}
+
+\subsection{Number Theory}
+
+\subsubsection{GCD and LCM}
+\begin{align*}
+\gcd(a, b) &= \gcd(b, a \bmod b) \\
+\text{lcm}(a, b) &= \frac{ab}{\gcd(a, b)}
+\end{align*}
+
+\lstinputlisting[caption=GCD Implementation]{code/Math/gcd.cpp}
+
+\subsubsection{Extended Euclidean Algorithm}
+For $ax + by = \gcd(a, b)$:
+\lstinputlisting[caption=Extended GCD]{code/Math/extended_gcd.cpp}
+
+\subsubsection{Modular Arithmetic}
+\begin{align*}
+a^{-1} \bmod m &\text{ exists iff } \gcd(a, m) = 1 \\
+a^{\phi(m)} &\equiv 1 \pmod{m} \text{ (Euler's theorem)} \\
+a^{p-1} &\equiv 1 \pmod{p} \text{ (Fermat's little theorem)}
+\end{align*}
+
+\lstinputlisting[caption=Modular Exponentiation]{code/Math/mod_pow.cpp}
+
+\subsection{Combinatorics}
+
+\subsubsection{Binomial Coefficients}
+\begin{align*}
+\binom{n}{k} &= \frac{n!}{k!(n-k)!} \\
+\binom{n}{k} &= \binom{n-1}{k-1} + \binom{n-1}{k} \\
+\sum_{k=0}^{n} \binom{n}{k} &= 2^n
+\end{align*}
+
+\lstinputlisting[caption=Binomial Coefficients]{code/Math/binomial.cpp}
+
+\subsubsection{Catalan Numbers}
+\begin{align*}
+C_n &= \frac{1}{n+1}\binom{2n}{n} = \frac{(2n)!}{(n+1)!n!} \\
+C_n &= \sum_{i=0}^{n-1} C_i C_{n-1-i} \\
+C_0 &= 1, \quad C_{n+1} = \frac{2(2n+1)}{n+2}C_n
+\end{align*}
+
+\subsection{Probability}
+
+\subsubsection{Basic Formulas}
+\begin{align*}
+P(A \cup B) &= P(A) + P(B) - P(A \cap B) \\
+P(A|B) &= \frac{P(A \cap B)}{P(B)} \\
+P(A \cap B) &= P(A|B) \cdot P(B) = P(B|A) \cdot P(A)
+\end{align*}
+
+\subsubsection{Expected Value}
+\begin{align*}
+E[X] &= \sum_{i} x_i \cdot P(X = x_i) \\
+E[aX + b] &= aE[X] + b \\
+E[X + Y] &= E[X] + E[Y]
+\end{align*}
+
+\subsection{Algebra}
+
+\subsubsection{Matrix Operations}
+Matrix multiplication complexity: $O(n^3)$
+\begin{align*}
+(AB)_{ij} &= \sum_{k=1}^{n} A_{ik}B_{kj} \\
+(AB)^T &= B^T A^T \\
+\det(AB) &= \det(A)\det(B)
+\end{align*}
+
+\subsubsection{System of Linear Equations}
+Gaussian elimination: $O(n^3)$
+\begin{align*}
+Ax &= b \\
+\text{If } \det(A) &\neq 0 \text{, unique solution exists}
+\end{align*}
+
+\subsection{Calculus}
+
+\subsubsection{Derivatives}
+\begin{align*}
+(x^n)' &= nx^{n-1} \\
+(e^x)' &= e^x \\
+(\ln x)' &= \frac{1}{x} \\
+(\sin x)' &= \cos x \\
+(\cos x)' &= -\sin x
+\end{align*}
+
+\subsubsection{Integration}
+\begin{align*}
+\int x^n \, dx &= \frac{x^{n+1}}{n+1} + C \quad (n \neq -1) \\
+\int e^x \, dx &= e^x + C \\
+\int \frac{1}{x} \, dx &= \ln|x| + C \\
+\int \sin x \, dx &= -\cos x + C \\
+\int \cos x \, dx &= \sin x + C
+\end{align*}
+
+\subsubsection{Series}
+\begin{align*}
+\sum_{i=1}^{n} i &= \frac{n(n+1)}{2} \\
+\sum_{i=1}^{n} i^2 &= \frac{n(n+1)(2n+1)}{6} \\
+\sum_{i=0}^{n} x^i &= \frac{1-x^{n+1}}{1-x} \quad (x \neq 1)
+\end{align*}
+
+% ========================================
+% SECTION: String Algorithms
+% ========================================
+\section{String Algorithms}
+
+\subsection{KMP (Knuth-Morris-Pratt)}
+Example implementation:
+\lstinputlisting[caption=KMP Algorithm]{code/Strings/kmp.cpp}
+
+\subsection{Z-Algorithm}
+Example implementation:
+\lstinputlisting[caption=Z-Algorithm]{code/Strings/z_algorithm.cpp}
+
+% ========================================
+% SECTION: Geometry
+% ========================================
+\section{Computational Geometry}
+
+\subsection{Basic Formulas}
+
+\subsubsection{Distance and Dot Product}
+\begin{align*}
+d(P_1, P_2) &= \sqrt{(x_2-x_1)^2 + (y_2-y_1)^2} \\
+\vec{a} \cdot \vec{b} &= a_x b_x + a_y b_y = |\vec{a}||\vec{b}|\cos\theta
+\end{align*}
+
+\subsubsection{Cross Product}
+\begin{align*}
+\vec{a} \times \vec{b} &= a_x b_y - a_y b_x \\
+|\vec{a} \times \vec{b}| &= |\vec{a}||\vec{b}|\sin\theta
+\end{align*}
+
+\subsection{Convex Hull}
+Example implementation:
+\lstinputlisting[caption=Convex Hull (Graham Scan)]{code/Geometry/convex_hull.cpp}
+
+% ========================================
+% SECTION: Dynamic Programming
+% ========================================
+\section{Dynamic Programming}
+
+\subsection{Longest Increasing Subsequence}
+Example implementation:
+\lstinputlisting[caption=LIS in O(n log n)]{code/DynamicProgramming/lis.cpp}
+
+\subsection{Knapsack}
+Example implementation:
+\lstinputlisting[caption=0-1 Knapsack]{code/DynamicProgramming/knapsack.cpp}
+
+\end{document}
