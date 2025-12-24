@@ -54,6 +54,29 @@
     morekeywords={*,...}
 }
 
+\lstset{
+    language=Python,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{green!50!black}\itshape,
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    numbersep=5pt,
+    backgroundcolor=\color{white},
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    frame=single,
+    tabsize=2,
+    captionpos=b,
+    breaklines=true,
+    breakatwhitespace=false,
+    escapeinside={\%*}{*)},
+    morekeywords={*,...}
+}
+
 % Header and footer configuration
 \pagestyle{fancy}
 \fancyhf{}
@@ -121,6 +144,15 @@
 
 % Switch to two-column format
 \twocolumn
+
+\section{Python stuff}
+
+\subsection{Regular input}
+
+\lstinputlisting[language=Python]{code/Python/input.py}
+\subsection{Fast I/O (If we use this, we're down bad)}
+
+\lstinputlisting[language=Python]{code/Python/fastio.py}
 
 % ========================================
 % SECTION: Graph Theory
