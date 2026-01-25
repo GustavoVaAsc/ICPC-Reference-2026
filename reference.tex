@@ -19,6 +19,7 @@
 
 % Headers and footers
 \usepackage{fancyhdr}
+\usepackage{lastpage}
 
 % Index/Table of contents
 \usepackage{tocloft}
@@ -29,6 +30,11 @@
 
 % Multiple columns for title page
 \usepackage{multicol}
+
+\usepackage{tabularx}     
+\usepackage{ragged2e}
+\usepackage{xltabular} 
+\usepackage{multirow}   
 
 % Listings configuration for C++
 \lstset{
@@ -78,10 +84,12 @@
 }
 
 % Header and footer configuration
+\renewcommand{\sectionmark}[1]{\markboth{#1}{}}
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\textbf{Heap Thrust}}
-\fancyhead[R]{\thepage}
+\fancyhead[C]{\textbf{\nouppercase{\leftmark}}}
+\fancyhead[R]{Page \thepage\ of \pageref{LastPage}}
 \renewcommand{\headrulewidth}{0.4pt}
 
 % Reduce spacing
@@ -105,7 +113,7 @@
     
     \vspace{1.5cm}
     
-    {\Large ICPC Reference (Date 1 version)}
+    {\Large ICPC Reference (ESCOM Winter version)}
     
     \vspace{2cm}
     
@@ -183,7 +191,229 @@ We must be careful with these functions since they could blow into $O(2^n)$ comp
 \subsubsection{Generate all subsets}
 \lstinputlisting[language=Python]{code/Python/gen_subsets.py}
 
+\section{C++ utils}
 
+\subsection{Common STL Algorithms}
+
+\subsection*{Sorting Algorithms}
+\begin{tabularx}{\linewidth}{|l|l|X|}
+    \hline
+    \textbf{Function} & \textbf{Parameters} & \textbf{Description} \\
+    \hline
+    sort & begin, end, [comp] & Standard unstable sort (O(n log n)) \\
+    \hline
+    stable\_sort & begin, end, [comp] & Stable sort preserves element order \\
+    \hline
+    is\_sorted & begin, end, [comp] & Checks if range is sorted (returns bool) \\
+    \hline
+    nth\_element & begin, nth, end, [comp] & Partitions around nth element \\
+    \hline
+\end{tabularx}
+
+\subsection*{Searching Functions}
+\begin{tabularx}{\linewidth}{|l|l|X|}
+    \hline
+    \textbf{Function} & \textbf{Parameters} & \textbf{Description} \\
+    \hline
+    lower\_bound & begin, end, val, [comp] & First element $\leq$ value \\
+    \hline
+    upper\_bound & begin, end, val, [comp] & First element > value \\
+    \hline
+    binary\_search & begin, end, val, [comp] & Existence check in sorted range \\
+    \hline
+    find & begin, end, val & Linear search for value \\
+    \hline
+    find\_if & begin, end, pred & Find first matching predicate \\
+    \hline
+\end{tabularx}
+
+
+\subsection*{Sequence Operations}
+\begin{tabularx}{\linewidth}{|l|l|X|}
+    \hline
+    \textbf{Function} & \textbf{Parameters} & \textbf{Description} \\
+    \hline
+    reverse & begin, end & Reverse elements in-place \\
+    \hline
+    rotate & begin, mid, end & Rotate elements left \\
+    \hline
+    next\_permutation & begin, end & Generate next permutation \\
+    \hline
+    unique & begin, end, [pred] & Remove consecutive duplicates \\
+    \hline
+    remove & begin, end, val & Remove elements equal to value \\
+    \hline
+\end{tabularx}
+
+\subsection*{Numerical Functions}
+\begin{tabularx}{\linewidth}{|l|l|X|}
+    \hline
+    \textbf{Function} & \textbf{Parameters} & \textbf{Description} \\
+    \hline
+    accumulate & begin, end, init, [op] & Sum/accumulate elements \\
+    \hline
+    partial\_sum & begin, end, dest, [op] & Compute prefix sums \\
+    \hline
+    \_\_gcd & a, b & Greatest common divisor (C++17) \\
+    \hline
+    lcm & a, b & Least common multiple (C++17) \\
+    \hline
+    iota & begin, end, val & Fill with consecutive values \\
+    \hline
+\end{tabularx}
+
+\subsection*{Memory/Array Operations}
+\begin{tabularx}{\linewidth}{|l|l|X|}
+    \hline
+    \textbf{Function} & \textbf{Parameters} & \textbf{Description} \\
+    \hline
+    memset & ptr, value, count & Fill memory with byte value \\
+    \hline
+    fill & begin, end, value & Fill range with value \\
+    \hline
+    fill\_n & begin, count, value & Fill N elements with value \\
+    \hline
+    copy & src\_b, src\_e, dest & Copy range to destination \\
+    \hline
+    copy\_if & src\_b, src\_e, dest, pred & Copy elements matching predicate \\
+    \hline
+\end{tabularx}
+
+
+\subsection*{Utility Functions}
+\begin{tabularx}{\linewidth}{|l|l|X|}
+    \hline
+    \textbf{Function} & \textbf{Parameters} & \textbf{Description} \\
+    \hline
+    swap & a, b & Swap two values \\
+    \hline
+    max\_element & begin, end, [comp] & Find maximum element \\
+    \hline
+    min\_element & begin, end, [comp] & Find minimum element \\
+    \hline
+    count & begin, end, val & Count element occurrences \\
+    \hline
+    all\_of & begin, end, pred & Check all elements satisfy condition \\
+    \hline
+\end{tabularx}
+
+\subsection*{Mathematical / Bitwise Builtins}
+\begin{tabularx}{\linewidth}{|l|l|X|}
+    \hline
+    \textbf{Function} & \textbf{Parameters} & \textbf{Description} \\
+    \hline
+    \_\_builtin\_popcount & x (int) & Count number of 1-bits \\
+    \hline
+    \_\_builtin\_popcountll & x (long long) & Count number of 1-bits (64-bit) \\
+    \hline
+    \_\_builtin\_clz & x (unsigned int) & Count leading zeros \\
+    \hline
+    \_\_builtin\_clzll & x (unsigned long long) & Leading zeros (64-bit) \\
+    \hline
+    \_\_builtin\_ctz & x (unsigned int) & Count trailing zeros \\
+    \hline
+    \_\_builtin\_ctzll & x (unsigned long long) & Trailing zeros (64-bit) \\
+    \hline
+    \_\_builtin\_parity & x & Return 1 if \#bits is odd \\
+    \hline
+    \_\_builtin\_ffs & x & Position of least significant 1-bit (1-indexed) \\
+    \hline
+    \_\_lg & x & Floor of $\log_2(x)$ (index of highest bit) \\
+    \hline
+\end{tabularx}
+
+\subsection*{Priority Queues and Heaps}
+\begin{tabularx}{\linewidth}{|l|l|X|}
+    \hline
+    \textbf{Function} & \textbf{Parameters} & \textbf{Description} \\
+    \hline
+    priority\_queue & [type], [container], [comp] & Max-heap by default \\
+    \hline
+    make\_heap & begin, end, [comp] & Turn range into heap \\
+    \hline
+    push\_heap & begin, end, [comp] & Push element into heap \\
+    \hline
+    pop\_heap & begin, end, [comp] & Pop max element into end \\
+    \hline
+    sort\_heap & begin, end, [comp] & Heap sort \\
+    \hline
+\end{tabularx}
+
+\subsection*{Set / Map Utilities}
+\begin{tabularx}{\linewidth}{|l|l|X|}
+    \hline
+    \textbf{Operation} & \textbf{Usage} & \textbf{Description} \\
+    \hline
+    s.lower\_bound(x) & set/map & First element $\geq$ x \\
+    \hline
+    s.upper\_bound(x) & set/map & First element $>$ x \\
+    \hline
+    s.equal\_range(x) & multiset/map & Pair of lower/upper bound \\
+    \hline
+    s.erase(it) & iterator & Erase element at iterator \\
+    \hline
+    s.find(x) & key & Iterator to key or end \\
+    \hline
+\end{tabularx}
+
+\subsection*{String Functions}
+\begin{tabularx}{\linewidth}{|l|l|X|}
+    \hline
+    \textbf{Function} & \textbf{Parameters} & \textbf{Description} \\
+    \hline
+    stoi, stol, stoll & string, [pos], [base] & Convert string $\to$ int/long/ll \\
+    \hline
+    stoul, stoull & string, [pos], [base] & Convert string $\to$ unsigned \\
+    \hline
+    stod, stof, stold & string & Convert string $\to$ double/float/long double \\
+    \hline
+    to\_string & value & Convert number $\to$ string \\
+    \hline
+    substr & pos, len & Substring \\
+    \hline
+    find & str, pos & Find first occurrence \\
+    \hline
+    rfind & str, pos & Find last occurrence \\
+    \hline
+\end{tabularx}
+
+\subsection*{Random Number Utilities}
+\begin{tabularx}{\linewidth}{|l|l|X|}
+    \hline
+    \textbf{Type / Function} & \textbf{Usage} & \textbf{Description} \\
+    \hline
+    mt19937 rng & chrono::steady\_clock::now() & Fast random generator \\
+    \hline
+    uniform\_int\_distribution & dist(a,b)(rng) & Random int in [a,b] \\
+    \hline
+    shuffle & begin, end, rng & Random shuffle \\
+    \hline
+\end{tabularx}
+
+\subsection*{Other Useful Utilities}
+\begin{tabularx}{\linewidth}{|l|l|X|}
+    \hline
+    \textbf{Function} & \textbf{Parameters} & \textbf{Description} \\
+    \hline
+    chrono::high\_resolution\_clock & now() & Get precise current time \\
+    \hline
+    \_\_int128 & value & 128-bit integer (manual I/O needed) \\
+    \hline
+    bitset $<N>$ & ops: \&, |, \^, <<, >> & Fixed-size bitset manipulation \\
+    \hline
+    tuple & get$<i>$(t) & Store and access heterogenous data \\
+    \hline
+    pair & first, second & Store pair of values \\
+    \hline
+\end{tabularx}
+
+\subsection{Random number generator}
+
+\lstinputlisting[language=C++]{code/CppUtils/RandomNumbers.cpp}
+
+\section{Binary Search in the Answer}
+
+\lstinputlisting[language=C++]{code/BinarySearch/AllBinSearches.cpp}
 % ========================================
 % SECTION: Graph Theory
 % ========================================
