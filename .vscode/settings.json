@@ -1,0 +1,27 @@
+{
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk-host",
+      "command": "flatpak-spawn",
+      "args": [
+        "--host",
+        "latexmk",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-pdf",
+        "-outdir=%OUTDIR%",
+        "%DOCFILE%"
+      ]
+    }
+  ],
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "latexmk (host)",
+      "tools": [
+        "latexmk-host"
+      ]
+    }
+  ],
+  "latex-workshop.latex.recipe.default": "first"
+}

@@ -1,7 +1,7 @@
-\documentclass[10pt,landscape,twocolumn]{article}
+\documentclass[10pt,letterpaper,landscape,twocolumn]{article}
 
 % Page setup
-\usepackage[landscape,top=1in,bottom=0.5in,left=0.5in,right=0.5in]{geometry}
+\usepackage[letterpaper,landscape,top=1in,bottom=0.5in,left=0.5in,right=0.5in]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 
@@ -109,11 +109,11 @@
 \begin{center}
     \vspace*{2cm}
     
-    {\Huge \textbf{Heap Thrust Reference 2026}}
+    {\Huge \textbf{Heap Thrust Reference}}
     
     \vspace{1.5cm}
     
-    {\Large ICPC Reference (ESCOM Winter version)}
+    {\Large ICPC Reference (Date 0 version)}
     
     \vspace{2cm}
     
@@ -174,6 +174,8 @@
 We must be careful with these functions since they could blow into $O(2^n)$ complexity.
 
 \lstinputlisting[language=Python]{code/Python/regex.py}
+\subsubsection{Regex notes}
+\lstinputlisting{code/Python/regex.md}
 
 \subsection{Itertools}
 \lstinputlisting[language=Python]{code/Python/itertools.py}
@@ -411,199 +413,450 @@ We must be careful with these functions since they could blow into $O(2^n)$ comp
 
 \lstinputlisting[language=C++]{code/CppUtils/RandomNumbers.cpp}
 
+\subsubsection{Graph generator}
+\lstinputlisting[language=Python]{code/Python/test_graph.py}
+
 \section{Binary Search in the Answer}
-
 \lstinputlisting[language=C++]{code/BinarySearch/AllBinSearches.cpp}
-% ========================================
-% SECTION: Graph Theory
-% ========================================
+
+\section{Bitwise Techniques}
+\subsection{All Subsets}
+\lstinputlisting[language=C++]{code/Bitwise/AllSubsets.cpp}
+\subsection{FWHT}
+\lstinputlisting[language=C++]{code/Bitwise/FWHT.cpp}
+\subsection{Gray Code}
+\lstinputlisting[language=C++]{code/Bitwise/GrayCode.cpp}
+\subsection{XOR Basis}
+\lstinputlisting[language=C++]{code/Bitwise/XORBasis.cpp}
+
 \section{Graph Theory}
+\subsection{Bellman-Ford}
+\lstinputlisting[language=C++]{code/GraphTheory/BellmanFord.cpp}
+\subsection{Dijkstra}
+\lstinputlisting[language=C++]{code/GraphTheory/Dijkstra.cpp}
+\subsection{Dinic}
+\lstinputlisting[language=C++]{code/GraphTheory/Dinic.cpp}
+\subsection{Directed Cycles}
+\lstinputlisting[language=C++]{code/GraphTheory/DirectedCycles.cpp}
+\subsection{Edmond-Karp}
+\lstinputlisting[language=C++]{code/GraphTheory/EdmondKarp.cpp}
+\subsection{Floyd-Warshall}
+\lstinputlisting[language=C++]{code/GraphTheory/FloydWarshall.cpp}
+\subsection{Kahn Topological Sort (Python)}
+\lstinputlisting[language=Python]{code/GraphTheory/KahnTopoSort.py}
+\subsection{Kruskal}
+\lstinputlisting[language=C++]{code/GraphTheory/Kruskal.cpp}
+\subsection{Lava Flow}
+\lstinputlisting[language=C++]{code/GraphTheory/LavaFlow.cpp}
+\subsection{Negative Cycles}
+\lstinputlisting[language=C++]{code/GraphTheory/NegativeCycles.cpp}
+\subsection{Prim Algorithm}
+\lstinputlisting[language=C++]{code/GraphTheory/PrimAlgorithm.cpp}
+\subsection{Strongly Connected Components}
+\lstinputlisting[language=C++]{code/GraphTheory/StronglyConnectedComponents.cpp}
+\subsection{Topological Sort}
+\lstinputlisting[language=C++]{code/GraphTheory/TopologicalSort.cpp}
+\subsection{2-SAT}
+\lstinputlisting[language=C++]{code/GraphTheory/TwoSat.cpp}
+\subsection{Undirected Cycles}
+\lstinputlisting[language=C++]{code/GraphTheory/UndirectedCycles.cpp}
+\subsection{Articulation Points}
+\lstinputlisting[language=C++]{code/GraphTheory/ArticulationPoints.cpp}
+\subsection{Bridges}
+\lstinputlisting[language=C++]{code/GraphTheory/Bridges.cpp}
+\subsection{Bridges Online}
+\lstinputlisting[language=C++]{code/GraphTheory/BridgesOnline.cpp}
+\subsection{Bridge Tree}
+\lstinputlisting[language=C++]{code/GraphTheory/BridgeTree.cpp}
+\subsection{Dynamic Connectivity}
+\lstinputlisting[language=C++]{code/GraphTheory/DynamicConnectivity.cpp}
+\subsection{Eulerian Path}
+\lstinputlisting[language=C++]{code/GraphTheory/EulerianPath.cpp}
+\subsection{Gale-Shapley}
+\lstinputlisting[language=C++]{code/GraphTheory/GaleShapeley.cpp}
+\subsection{Hungarian Algorithm}
+\lstinputlisting[language=C++]{code/GraphTheory/HungarianAlgorithm.cpp}
+\subsection{SPFA}
+\lstinputlisting[language=C++]{code/GraphTheory/SPFA.cpp}
+\subsection{Tarjan}
+\lstinputlisting[language=C++]{code/GraphTheory/Tarjan.cpp}
 
-\subsection{Depth First Search (DFS)}
-Example implementation:
-\lstinputlisting[caption=DFS Implementation]{code/GraphTheory/dfs.cpp}
-
-\subsection{Breadth First Search (BFS)}
-Example implementation:
-\lstinputlisting[caption=BFS Implementation]{code/GraphTheory/bfs.cpp}
-
-% Add more graph theory algorithms as needed
-
-% ========================================
-% SECTION: Data Structures
-% ========================================
 \section{Data Structures}
+\subsection{2D Segment Tree}
+\lstinputlisting[language=C++]{code/DataStructures/2DSegTree.cpp}
+\subsection{Bit Trie}
+\lstinputlisting[language=C++]{code/DataStructures/BitTrie.cpp}
+\subsection{Disjoint Set Union}
+\lstinputlisting[language=C++]{code/DataStructures/DSU.cpp}
+\subsection{Fenwick Tree}
+\lstinputlisting[language=C++]{code/DataStructures/FenwickTree.cpp}
+\subsection{GP Hash Table}
+\lstinputlisting[language=C++]{code/DataStructures/GPHashTable.cpp}
+\subsection{Implicit Treap}
+\lstinputlisting[language=C++]{code/DataStructures/ImplicitTreap.cpp}
+\subsection{Iterative Segment Tree}
+\lstinputlisting[language=C++]{code/DataStructures/IterativeSegTree.cpp}
+\subsection{Lazy Segment Tree (Max)}
+\lstinputlisting[language=C++]{code/DataStructures/LazySegTreeMax.cpp}
+\subsection{Lazy Segment Tree (Sum)}
+\lstinputlisting[language=C++]{code/DataStructures/LazySegTreeZum.cpp}
+\subsection{Lazy Treap}
+\lstinputlisting[language=C++]{code/DataStructures/LazyTreap.cpp}
+\subsection{Merge Sort Tree}
+\lstinputlisting[language=C++]{code/DataStructures/MergeSortTree.cpp}
+\subsection{Ordered Set}
+\lstinputlisting[language=C++]{code/DataStructures/OSet.cpp}
+\subsection{Recursive Segment Tree}
+\lstinputlisting[language=C++]{code/DataStructures/RecursiveSegTree.cpp}
+\subsection{Treap}
+\lstinputlisting[language=C++]{code/DataStructures/Treap.cpp}
+\subsection{Cycle Detection Online}
+\lstinputlisting[language=C++]{code/DataStructures/CycleDetectionOnline.cpp}
+\subsection{DSU with Rollbacks}
+\lstinputlisting[language=C++]{code/DataStructures/DSUWithRollbacks.cpp}
+\subsection{Fenwick Lazy}
+\lstinputlisting[language=C++]{code/DataStructures/FenwickLazy.cpp}
+\subsection{Implicit Treap 2}
+\lstinputlisting[language=C++]{code/DataStructures/ImplicitTreap2.cpp}
+\subsection{Online Bipartiteness}
+\lstinputlisting[language=C++]{code/DataStructures/OnlineBipartitness.cpp}
+\subsection{Path Copy Persistent Array}
+\lstinputlisting[language=C++]{code/DataStructures/PathCopyPersistentArray.cpp}
+\subsection{Persistent Array}
+\lstinputlisting[language=C++]{code/DataStructures/PersistentArray.cpp}
+\subsection{Persistent Segment Tree}
+\lstinputlisting[language=C++]{code/DataStructures/PersistentSegTree.cpp}
+\subsection{Prefix Suffix Segment Tree}
+\lstinputlisting[language=C++]{code/DataStructures/PrefixSuffixSegTree.cpp}
+\subsection{Wicho Lazy Segment Tree}
+\lstinputlisting[language=C++]{code/DataStructures/WichoLazySegTree.cpp}
+\subsection{Li Chao Tree}
+\lstinputlisting[language=C++]{code/DataStructures/LiChaoTree.cpp}
 
-\subsection{Segment Tree}
-Example implementation:
-\lstinputlisting[caption=Segment Tree]{code/DataStructures/segment_tree.cpp}
-
-\subsection{Fenwick Tree (BIT)}
-Example implementation:
-\lstinputlisting[caption=Fenwick Tree]{code/DataStructures/fenwick_tree.cpp}
-
-% ========================================
-% SECTION: Range Queries
-% ========================================
 \section{Range Queries}
-
 \subsection{Sparse Table}
-Example implementation:
-\lstinputlisting[caption=Sparse Table]{code/RangeQueries/sparse_table.cpp}
+\lstinputlisting[language=C++]{code/RangeQueries/sparse_table.cpp}
 
-% ========================================
-% SECTION: Mathematics
-% ========================================
 \section{Mathematics}
+\subsection{Formula Sheet (Contest)}
 
-\subsection{Number Theory}
-
-\subsubsection{GCD and LCM}
-\begin{align*}
-\gcd(a, b) &= \gcd(b, a \bmod b) \\
-\text{lcm}(a, b) &= \frac{ab}{\gcd(a, b)}
-\end{align*}
-
-\lstinputlisting[caption=GCD Implementation]{code/Math/gcd.cpp}
-
-\subsubsection{Extended Euclidean Algorithm}
-For $ax + by = \gcd(a, b)$:
-\lstinputlisting[caption=Extended GCD]{code/Math/extended_gcd.cpp}
-
-\subsubsection{Modular Arithmetic}
-\begin{align*}
-a^{-1} \bmod m &\text{ exists iff } \gcd(a, m) = 1 \\
-a^{\phi(m)} &\equiv 1 \pmod{m} \text{ (Euler's theorem)} \\
-a^{p-1} &\equiv 1 \pmod{p} \text{ (Fermat's little theorem)}
-\end{align*}
-
-\lstinputlisting[caption=Modular Exponentiation]{code/Math/mod_pow.cpp}
-
-\subsection{Combinatorics}
-
-\subsubsection{Binomial Coefficients}
+\subsubsection{Combinatorics}
 \begin{align*}
 \binom{n}{k} &= \frac{n!}{k!(n-k)!} \\
-\binom{n}{k} &= \binom{n-1}{k-1} + \binom{n-1}{k} \\
-\sum_{k=0}^{n} \binom{n}{k} &= 2^n
+P(n,k) &= \frac{n!}{(n-k)!} \quad \text{(ordered, no repetition)} \\
+\text{Combinations with repetition} &= \binom{n+k-1}{k} \\
+\text{Permutations with repetition} &= \frac{n!}{a_1!a_2!\cdots a_m!} \\
+\binom{n}{k} &= \binom{n-1}{k-1} + \binom{n-1}{k} \quad \text{(Pascal identity)}
 \end{align*}
 
-\lstinputlisting[caption=Binomial Coefficients]{code/Math/binomial.cpp}
+Multinomial coefficient (split $n$ items into groups $k_1,\dots,k_m$):
+\begin{align*}
+\binom{n}{k_1,k_2,\dots,k_m} = \frac{n!}{k_1!k_2!\cdots k_m!}, \quad \sum_i k_i = n
+\end{align*}
 
-\subsubsection{Catalan Numbers}
+Catalan numbers (balanced parentheses, rooted full binary trees, non-crossing matchings):
 \begin{align*}
 C_n &= \frac{1}{n+1}\binom{2n}{n} = \frac{(2n)!}{(n+1)!n!} \\
-C_n &= \sum_{i=0}^{n-1} C_i C_{n-1-i} \\
-C_0 &= 1, \quad C_{n+1} = \frac{2(2n+1)}{n+2}C_n
+C_0 &= 1, \quad C_n = \sum_{i=0}^{n-1} C_i C_{n-1-i}
 \end{align*}
 
-\subsection{Probability}
+\begin{itemize}
+    \item \textbf{Valid Parentheses}: Count of balanced parentheses expressions with \( n \) pairs.
+    \item \textbf{Full Binary Trees}: Structurally unique full binary trees with \( n+1 \) leaves.
+    \item \textbf{Polygon Triangulation}: Ways to triangulate a convex \( (n+2) \)-gon.
+    \item \textbf{Dyck Paths}: Paths from \( (0,0) \) to \( (2n,0) \) that never dip below the x-axis.
+    \item \textbf{Non-Crossing Partitions}: Ways to connect \( 2n \) points on a circle without crossing chords.
+    \item \textbf{Stack Permutations}: Valid stack-sortable permutations of length \( n \).
+    \item \textbf{Mountain Ranges}: Sequences of \( 2n \) up/down steps forming valid mountain ranges.
+    \item \textbf{Unique BSTs}: Number of distinct binary search trees with \( n \) keys.
+    \item \textbf{Diagonal-Avoiding Paths}: Paths in a grid from \( (0,0) \) to \( (n,n) \) without crossing the diagonal.
+\end{itemize}
 
-\subsubsection{Basic Formulas}
+
+\subsection{Cayley's Formula}
+
+Number of labeled trees of n vertices: $n^{n-2}$.
+
+Number of rooted forest of n vertices is: $(n+1)^{n-1}$
+
+\subsection{Geometric series}
+
+% Finite Geometric Series
+\textbf{Finite:} \[\quad \sum_{k=0}^{n} ar^k = 
+\begin{cases} 
+a \dfrac{1 - r^{n+1}}{1 - r} & \text{if } r \neq 1, \\
+a(n + 1) & \text{if } r = 1.
+\end{cases}
+\]
+% Infinite Geometric Series
+\textbf{Infinite:} \[\quad \sum_{k=0}^{\infty} ar^k = \frac{a}{1 - r} \quad \text{(converges iff } |r| < 1\text{)}
+\]
+\subsection{Divisors}
+
+The number of divisors of any number n is:
+
+\[
+\begin{cases}
+    \approx 100 \quad n< 5 \times 10^4 \\
+    \approx 500 \quad n<1 \times 10^7 \\
+    \approx 2000 \quad n < 1 \times 10^10 \\
+    \approx 200000 \quad n < 1 \times 10^19
+\end{cases}
+\]
+
+\subsection{Number of primes between 1 and n}
+
+\[
+\frac{n}{ln(n)}
+\]
+
+
+\subsection{Pythagorean triplets}
+
+\[
+a = k \cdot (m^2 - n^2), \quad b = k\cdot(2mn), \quad c = k\cdot(m^2+n^2)
+\]
+
+With $m>n>0$, $k=0$, $m\perp n$, and either m or n even.
+
+
+\subsection{Derangments}
+
+Permutations of a set sush that none of the elements appear in their original position.
+
+\[
+D(n) = (n-1)(D(n-1)+D(n-2)) = nD(n-1)+(-1)^n = \lfloor \frac{n!}{e}\rfloor
+\]
+
+Pascal triangle facts:
 \begin{align*}
-P(A \cup B) &= P(A) + P(B) - P(A \cap B) \\
-P(A|B) &= \frac{P(A \cap B)}{P(B)} \\
-P(A \cap B) &= P(A|B) \cdot P(B) = P(B|A) \cdot P(A)
+\sum_{k=0}^{n}\binom{n}{k} &= 2^n, \qquad
+\sum_{k=0}^{n}(-1)^k\binom{n}{k} = 0
 \end{align*}
 
-\subsubsection{Expected Value}
-\begin{align*}
-E[X] &= \sum_{i} x_i \cdot P(X = x_i) \\
-E[aX + b] &= aE[X] + b \\
-E[X + Y] &= E[X] + E[Y]
-\end{align*}
-
-\subsection{Algebra}
-
-\subsubsection{Matrix Operations}
-Matrix multiplication complexity: $O(n^3)$
-\begin{align*}
-(AB)_{ij} &= \sum_{k=1}^{n} A_{ik}B_{kj} \\
-(AB)^T &= B^T A^T \\
-\det(AB) &= \det(A)\det(B)
-\end{align*}
-
-\subsubsection{System of Linear Equations}
-Gaussian elimination: $O(n^3)$
-\begin{align*}
-Ax &= b \\
-\text{If } \det(A) &\neq 0 \text{, unique solution exists}
-\end{align*}
-
-\subsection{Calculus}
-
-\subsubsection{Derivatives}
-\begin{align*}
-(x^n)' &= nx^{n-1} \\
-(e^x)' &= e^x \\
-(\ln x)' &= \frac{1}{x} \\
-(\sin x)' &= \cos x \\
-(\cos x)' &= -\sin x
-\end{align*}
-
-\subsubsection{Integration}
-\begin{align*}
-\int x^n \, dx &= \frac{x^{n+1}}{n+1} + C \quad (n \neq -1) \\
-\int e^x \, dx &= e^x + C \\
-\int \frac{1}{x} \, dx &= \ln|x| + C \\
-\int \sin x \, dx &= -\cos x + C \\
-\int \cos x \, dx &= \sin x + C
-\end{align*}
-
-\subsubsection{Series}
+\subsubsection{Sums}
+Gaussian sums (first powers to fourth powers):
 \begin{align*}
 \sum_{i=1}^{n} i &= \frac{n(n+1)}{2} \\
 \sum_{i=1}^{n} i^2 &= \frac{n(n+1)(2n+1)}{6} \\
-\sum_{i=0}^{n} x^i &= \frac{1-x^{n+1}}{1-x} \quad (x \neq 1)
+\sum_{i=1}^{n} i^3 &= \left(\frac{n(n+1)}{2}\right)^2 \\
+\sum_{i=1}^{n} i^4 &= \frac{n(n+1)(2n+1)(3n^2+3n-1)}{30}
 \end{align*}
 
-% ========================================
-% SECTION: String Algorithms
-% ========================================
+Useful finite progressions:
+\begin{align*}
+\sum_{i=0}^{n-1} ar^i &= a\frac{1-r^n}{1-r} \ (r\neq 1), \qquad
+\sum_{i=0}^{n-1} (a+id) = \frac{n}{2}\left(2a+(n-1)d\right)
+\end{align*}
+
+\subsubsection{Geometry}
+For points $A(x_1,y_1), B(x_2,y_2)$:
+\begin{align*}
+\text{Euclidean}(A,B) &= \sqrt{(x_1-x_2)^2 + (y_1-y_2)^2} \\
+\text{Manhattan}(A,B) &= |x_1-x_2| + |y_1-y_2| \\
+\text{Chebyshev}(A,B) &= \max\{|x_1-x_2|, |y_1-y_2|\}
+\end{align*}
+
+For vectors $\vec{a}=(a_x,a_y),\ \vec{b}=(b_x,b_y)$:
+\begin{align*}
+\vec{a}\cdot\vec{b} &= a_xb_x+a_yb_y \\
+\vec{a}\times\vec{b} &= a_xb_y-a_yb_x
+\end{align*}
+Note: In 2D, $\operatorname{sign}(\vec{a}\times\vec{b})$ gives orientation (left/right turn), and
+$|\vec{a}\times\vec{b}|/2$ is the triangle area.
+
+\subsubsection{Probability}
+\begin{align*}
+\mathbb{E}[X] &= \sum_x x\,P(X=x) \\
+\mathbb{E}[aX+b] &= a\,\mathbb{E}[X]+b \\
+\mathbb{E}\!\left[\sum_{i=1}^{m} X_i\right] &= \sum_{i=1}^{m}\mathbb{E}[X_i] \quad \text{(linearity, no independence needed)}
+\end{align*}
+
+Indicator trick (very useful): If $I_A$ is 1 when event $A$ happens and 0 otherwise,
+then $\mathbb{E}[I_A]=P(A)$. Count expected objects by summing indicators.
+
+\subsubsection{Number Theory and Counting Essentials}
+\begin{align*}
+\gcd(a,b)\cdot\operatorname{lcm}(a,b) &= ab \\
+\varphi(n) &= n\prod_{p\mid n}\left(1-\frac{1}{p}\right) \\
+a^{\varphi(m)} &\equiv 1 \pmod m \ (\gcd(a,m)=1)
+\end{align*}
+
+Inclusion-exclusion for sets $A_1,\dots,A_m$:
+\begin{align*}
+\left|\bigcup_i A_i\right| = \sum_i |A_i| - \sum_{i<j}|A_i\cap A_j| + \sum_{i<j<k}|A_i\cap A_j\cap A_k| - \cdots
+\end{align*}
+
+Stars and bars (nonnegative solutions of $x_1+\cdots+x_k=n$):
+\begin{align*}
+\#\text{solutions} = \binom{n+k-1}{k-1}
+\end{align*}
+
+\subsection{Binary Exponentiation}
+\lstinputlisting[language=C++]{code/Math/BinPow.cpp}
+\subsection{Binomial Coefficients}
+\lstinputlisting[language=C++]{code/Math/BinomialCoefficients.cpp}
+\subsection{Extended Euclidean}
+\lstinputlisting[language=C++]{code/Math/ExtendedEuclidian.cpp}
+\subsection{FFT}
+\lstinputlisting[language=C++]{code/Math/FFT.cpp}
+\subsection{Big Integer}
+\lstinputlisting[language=C++]{code/Math/BigInt.cpp}
+\subsection{NTT}
+\lstinputlisting[language=C++]{code/Math/NTT.cpp}
+\subsection{Graph Paths}
+\lstinputlisting[language=C++]{code/Math/GraphPaths.cpp}
+\subsection{Graph Paths Min-Plus}
+\lstinputlisting[language=C++]{code/Math/GraphPathsMin.cpp}
+\subsection{Log Fibonacci}
+\lstinputlisting[language=C++]{code/Math/LogFib.cpp}
+\subsection{Matrix Determinant}
+\lstinputlisting[language=C++]{code/Math/MatrixDeterminant.cpp}
+\subsection{Matrix Rank}
+\lstinputlisting[language=C++]{code/Math/MatrixRank.cpp}
+\subsection{Gauss-Jordan}
+\lstinputlisting[language=C++]{code/Math/GaussJordan.cpp}
+\subsection{Miller-Rabin (Primality Test)}
+\lstinputlisting[language=C++]{code/Math/MillerRabin.cpp}
+\subsection{Linear Sieve}
+\lstinputlisting[language=C++]{code/Math/LinearSieve.cpp}
+\subsection{Euler Totient Function}
+\lstinputlisting[language=C++]{code/Math/EulerTotientFunction.cpp}
+\subsection{Fast Totient Function}
+\lstinputlisting[language=C++]{code/Math/FastTotientFunction.cpp}
+\subsection{Diophantine Equations}
+\lstinputlisting[language=C++]{code/Math/DiophantineEquations.cpp}
+\subsection{Factorials}
+\lstinputlisting[language=C++]{code/Math/Factorials.cpp}
+\subsection{Number of Divisors}
+\lstinputlisting[language=C++]{code/Math/NumOfDivisors.cpp}
+\subsection{Modular Inverse}
+\lstinputlisting[language=C++]{code/Math/ModInv.cpp}
+\subsection{Discrete Logarithm}
+\lstinputlisting[language=C++]{code/Math/DiscreteLog.cpp}
+\subsection{Segmented Sieve}
+\lstinputlisting[language=C++]{code/Math/SegmentedSieve.cpp}
+\subsection{Sieve of Eratosthenes}
+\lstinputlisting[language=C++]{code/Math/SieveOfErathostenes.cpp}
+\subsection{Simpson Method}
+\lstinputlisting[language=C++]{code/Math/SimpsonMethod.cpp}
+\subsection{Precompute Pascal Triangle}
+\lstinputlisting[language=C++]{code/Math/PrecomputePascalTriangle.cpp}
+\subsection{Sqrt and Inverse Sqrt}
+\lstinputlisting[language=C++]{code/Math/SqrtAndInvSqrt.cpp}
+\subsection{Sum of Divisors}
+\lstinputlisting[language=C++]{code/Math/SumOfDivisors.cpp}
+\subsection{Ternary Search}
+\lstinputlisting[language=C++]{code/Math/TernarySearch.cpp}
+\subsection{Trivial Factorization}
+\lstinputlisting[language=C++]{code/Math/TrivialFactorizartion.cpp}
+
 \section{String Algorithms}
+\subsection{Aho-Corasick}
+\lstinputlisting[language=C++]{code/Strings/AhoCorasick.cpp}
+\subsection{DP on Trie}
+\lstinputlisting[language=C++]{code/Strings/DPOnTrie.cpp}
+\subsection{KMP}
+\lstinputlisting[language=C++]{code/Strings/KMP.cpp}
+\subsection{Manacher Algorithm}
+\lstinputlisting[language=C++]{code/Strings/ManacherAlgorithm.cpp}
+\subsection{Palindromic Tree}
+\lstinputlisting[language=C++]{code/Strings/PalindromicTree.cpp}
+\subsection{Polynomial Hash}
+\lstinputlisting[language=C++]{code/Strings/PolynomialHash.cpp}
+\subsection{Rabin-Karp}
+\lstinputlisting[language=C++]{code/Strings/RabinKarp.cpp}
+\subsection{Suffix Array + LCP}
+\lstinputlisting[language=C++]{code/Strings/SuffixArrayLCP.cpp}
+\subsection{Suffix Automaton}
+\lstinputlisting[language=C++]{code/Strings/SuffixAutomaton.cpp}
+\subsection{Suffix Automata 2}
+\lstinputlisting[language=C++]{code/Strings/SuffixAutomata2.cpp}
+\subsection{String Stream}
+\lstinputlisting[language=C++]{code/Strings/StringStream.cpp}
+\subsection{XOR Hash}
+\lstinputlisting[language=C++]{code/Strings/XORHash.cpp}
+\subsection{Z Algorithm}
+\lstinputlisting[language=C++]{code/Strings/ZAlgorithm.cpp}
 
-\subsection{KMP (Knuth-Morris-Pratt)}
-Example implementation:
-\lstinputlisting[caption=KMP Algorithm]{code/Strings/kmp.cpp}
-
-\subsection{Z-Algorithm}
-Example implementation:
-\lstinputlisting[caption=Z-Algorithm]{code/Strings/z_algorithm.cpp}
-
-% ========================================
-% SECTION: Geometry
-% ========================================
 \section{Computational Geometry}
-
-\subsection{Basic Formulas}
-
-\subsubsection{Distance and Dot Product}
-\begin{align*}
-d(P_1, P_2) &= \sqrt{(x_2-x_1)^2 + (y_2-y_1)^2} \\
-\vec{a} \cdot \vec{b} &= a_x b_x + a_y b_y = |\vec{a}||\vec{b}|\cos\theta
-\end{align*}
-
-\subsubsection{Cross Product}
-\begin{align*}
-\vec{a} \times \vec{b} &= a_x b_y - a_y b_x \\
-|\vec{a} \times \vec{b}| &= |\vec{a}||\vec{b}|\sin\theta
-\end{align*}
-
 \subsection{Convex Hull}
-Example implementation:
-\lstinputlisting[caption=Convex Hull (Graham Scan)]{code/Geometry/convex_hull.cpp}
+\lstinputlisting[language=C++]{code/Geometry/ConvexHull.cpp}
+\subsection{Complex Point}
+\lstinputlisting[language=C++]{code/Geometry/ComplexPoint.cpp}
+\subsection{Line Segment Intersection}
+\lstinputlisting[language=C++]{code/Geometry/LineSegmentIntersect.cpp}
+\subsection{Minimum Euclidean Distance}
+\lstinputlisting[language=C++]{code/Geometry/MinEuclideanDistance.cpp}
+\subsection{Minimum Manhattan Distance}
+\lstinputlisting[language=C++]{code/Geometry/MinManhattanDistance.cpp}
+\subsection{Point In Polygon}
+\lstinputlisting[language=C++]{code/Geometry/PointInPolygon.cpp}
+\subsection{Point Location Test}
+\lstinputlisting[language=C++]{code/Geometry/PointLocationTest.cpp}
+\subsection{Polar Sort}
+\lstinputlisting[language=C++]{code/Geometry/PolarSort.cpp}
+\subsection{Polygon Area}
+\lstinputlisting[language=C++]{code/Geometry/PolygonArea.cpp}
 
-% ========================================
-% SECTION: Dynamic Programming
-% ========================================
 \section{Dynamic Programming}
-
-\subsection{Longest Increasing Subsequence}
-Example implementation:
-\lstinputlisting[caption=LIS in O(n log n)]{code/DynamicProgramming/lis.cpp}
-
+\subsection{Coin Problem}
+\lstinputlisting[language=C++]{code/DynamicProgramming/CoinProblem.cpp}
+\subsection{Coin Problem (Min Coins)}
+\lstinputlisting[language=C++]{code/DynamicProgramming/CoinProblemMin.cpp}
+\subsection{Coin Problem (Sorted)}
+\lstinputlisting[language=C++]{code/DynamicProgramming/CoinProblemSorted.cpp}
 \subsection{Knapsack}
-Example implementation:
-\lstinputlisting[caption=0-1 Knapsack]{code/DynamicProgramming/knapsack.cpp}
+\lstinputlisting[language=C++]{code/DynamicProgramming/Knapsack.cpp}
+\subsection{LCS}
+\lstinputlisting[language=C++]{code/DynamicProgramming/LCS.cpp}
+\subsection{LIS}
+\lstinputlisting[language=C++]{code/DynamicProgramming/LIS.cpp}
+\subsection{Two Sets}
+\lstinputlisting[language=C++]{code/DynamicProgramming/TwoSets.cpp}
+\subsection{Bitmask DP}
+\lstinputlisting[language=C++]{code/DynamicProgramming/BitmaskDP.cpp}
+\subsection{Digit DP}
+\lstinputlisting[language=C++]{code/DynamicProgramming/DigitDP.cpp}
+\subsection{Edit Distance}
+\lstinputlisting[language=C++]{code/DynamicProgramming/EditDistance.cpp}
+\subsection{Retrieve LIS}
+\lstinputlisting[language=C++]{code/DynamicProgramming/RetrieveLIS.cpp}
+\subsection{SOS DP}
+\lstinputlisting[language=C++]{code/DynamicProgramming/SOSDP.cpp}
+
+\section{Trees}
+\subsection{Diameter}
+\lstinputlisting[language=C++]{code/Trees/Diameter.cpp}
+\subsection{Euler Tour}
+\lstinputlisting[language=C++]{code/Trees/EulerTour.cpp}
+\subsection{Tree Isomorphism}
+\lstinputlisting[language=C++]{code/Trees/Isomorphism.cpp}
+\subsection{Max Distance}
+\lstinputlisting[language=C++]{code/Trees/MaxDistance.cpp}
+\subsection{Binary Lifting}
+\lstinputlisting[language=C++]{code/Trees/BinaryLifting.cpp}
+\subsection{Centroid Decomposition}
+\lstinputlisting[language=C++]{code/Trees/CentroidDecomposition.cpp}
+\subsection{Heavy-Light Decomposition}
+\lstinputlisting[language=C++]{code/Trees/HeavyLightDecomposition.cpp}
+\subsection{Lowest Common Ancestor}
+\lstinputlisting[language=C++]{code/Trees/LCA.cpp}
+\subsection{Successor DP}
+\lstinputlisting[language=C++]{code/Trees/SuccessorDP.cpp}
+
+\section{Miscellaneous}
+\subsection{2D Prefix Sum}
+\lstinputlisting[language=C++]{code/Miscellaneous/2DPrefixZum.cpp}
+\subsection{Kadane}
+\lstinputlisting[language=C++]{code/Miscellaneous/Kadane.cpp}
+\subsection{Index Compression}
+\lstinputlisting[language=C++]{code/Miscellaneous/IndexCompression.cpp}
+\subsection{Berlekamp-Massey}
+\lstinputlisting[language=C++]{code/Miscellaneous/BerlekampMessey.cpp}
+\subsection{Moore's Voting}
+\lstinputlisting[language=C++]{code/Miscellaneous/MooresVoting.cpp}
+\subsection{Compiler Optimizations}
+\lstinputlisting[language=C++]{code/Miscellaneous/CompilerOptimizations.cpp}
 
 \end{document}
