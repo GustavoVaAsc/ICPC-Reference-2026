@@ -649,6 +649,12 @@ Useful finite progressions:
 \sum_{i=0}^{n-1} (a+id) = \frac{n}{2}\left(2a+(n-1)d\right)
 \end{align*}
 
+Rare progessions:
+\begin{align*}
+\sum_{i=1}^{n-1} i\cdot (n-i) &= \frac{n(n^2-1)}{6} \\
+\end{align*}
+
+
 \subsubsection{Geometry}
 For points $A(x_1,y_1), B(x_2,y_2)$:
 \begin{align*}
@@ -692,6 +698,41 @@ Stars and bars (nonnegative solutions of $x_1+\cdots+x_k=n$):
 \#\text{solutions} = \binom{n+k-1}{k-1}
 \end{align*}
 
+\subsection{Manhattan Distance on a Grid}
+
+For calculating the sum of Manhattan distances between all pairs of points in an $n \times m$ grid, we can use the following:
+
+\textbf{NOTE}: The block must have a constant height.
+
+Compress the nxm into the x axis, living a row of m points, each section has n points.
+
+\begin{align*}
+D = \sum_{i=1}^{K} n^2 \frac{m(m^2 - 1)}{6}
+\end{align*}
+
+Do the same for the y axis, and add them together.
+\begin{align*}
+D = \sum_{i=1}^{K} m^2 \frac{n(n^2 - 1)}{6}
+\end{align*}
+
+Total
+\begin{align*}
+D = \sum_{i=1}^{K} n^2 \frac{m(m^2 - 1)}{6} + m^2 \frac{n(n^2 - 1)}{6}
+\end{align*}
+
+For calculating all external Manhattan distances between many blocks:
+
+\begin{align*}
+D_{\text{external}} = \sum_{i=1}^{K-1} \sum_{j=i+1}^{K} A_i A_j C_{ij}
+\end{align*}
+
+Where $A_i$ is the area of block i, and $C_{ij}$ is the Manhattan distance between the centers of blocks i and j on 1D dimension.
+Repat same formula for y axis, and add them together.
+
+To get the center just divide the x and y coordinates by 2, doesn't if it's not integer.
+
+
+
 \subsection{Binary Exponentiation}
 \lstinputlisting[language=C++]{code/Math/BinPow.cpp}
 \subsection{Binomial Coefficients}
@@ -726,6 +767,8 @@ Stars and bars (nonnegative solutions of $x_1+\cdots+x_k=n$):
 \lstinputlisting[language=C++]{code/Math/FastTotientFunction.cpp}
 \subsection{Diophantine Equations}
 \lstinputlisting[language=C++]{code/Math/DiophantineEquations.cpp}
+\subsection{Mod Struct}
+\lstinputlisting[language=C++]{code/Math/Mod.cpp}
 \subsection{Factorials}
 \lstinputlisting[language=C++]{code/Math/Factorials.cpp}
 \subsection{Number of Divisors}
