@@ -44,6 +44,14 @@ bool check(Point p1, Point p2, Point p3, Point p4) {
 	if (trigonometric_sense(p3, p4, p1) * trigonometric_sense(p3, p4, p2) > 0) {
 		return false;
 	}
+	// Collinear case: check if projections on x-axis overlap properly
+	// (not just touch at a single endpoint)
+	// First check if all 4 points are collinear by verifying p3 and p4 lie on line p1-p2
+	if (trigonometric_sense(p1, p2, p3) == 0 && trigonometric_sense(p1, p2, p4) == 0) {
+		if (max(p1.x, p2.x) < min(p3.x, p4.x) ||
+		    max(p3.x, p4.x) < min(p1.x, p2.x))
+			return false;
+	}
 	return true;
 }
 

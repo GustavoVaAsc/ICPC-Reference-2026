@@ -36,17 +36,17 @@ public:
 int kruskal(int n, vector<Edge> &edges, vector<Edge> &ans){
     ll cost = 0;
     int ed_cnt = 0;
-    vector<bool> sup(n,false);
+    DisjointSets dsu(n);
     sort(edges.begin(), edges.end());
- 
+
     for(Edge e : edges){
-        if(!sup[e.v]){
-            sup[e.v] = true;
+        if(dsu.unite(e.u, e.v)){
+            ans.push_back(e);
             cost += e.w;
             ed_cnt++;
         }
     }
- 
+
     if (ed_cnt != n - 1) return -1;
     return cost;
 }

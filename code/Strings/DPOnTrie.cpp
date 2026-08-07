@@ -1,3 +1,7 @@
+#ifndef MOD
+#define MOD 1000000007
+#endif
+
 class Trie{
 private:
     Trie *children[26];

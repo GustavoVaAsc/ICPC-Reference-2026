@@ -14,7 +14,7 @@ def factorial():
     for i in range(2,MAX):
         fact[i] = (fact[i-1] * i) % MOD
     i_fact[MAX-1] = inv(fact[MAX-1])
-    for i in range(MAX-2, 0, -1):
+    for i in range(MAX-2, -1, -1):
         i_fact[i] = (i_fact[i+1]*(i+1))%MOD
 
 def comb(n : int, k: int):

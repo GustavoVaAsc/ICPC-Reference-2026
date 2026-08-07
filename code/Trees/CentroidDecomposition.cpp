@@ -93,7 +93,8 @@ class CentroidDecomposition {
             }
             
             // Limpieza ultra rapida usando memset implicito
-            fill(dst, dst + current_max_depth + 1, 0); 
+            fill(dst, dst + current_max_depth + 1, 0);
+            dst[0] = 1; // restore centroid contribution for subsequent children
             
             // Recursion para el resto de los componentes
             for(int ch : adj[s]){

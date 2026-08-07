@@ -16,10 +16,8 @@ vector<T> berlekampMassey(const vector<T> &s) {
             // this is the first time we're updating c
             // s_i was the first non-zero element we encountered
             // we make c of length i + 1 so that s_i is part of the base case
-            c.resize(i + 1);
-            mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
-            for (T &x : c)
-                x = rng();  // just to prove that the initial values don't matter in the first step, I will set to random values
+            c.assign(i + 1, T(0));
+            c[i] = T(1);
             f = i;
         } else {
             // we need to use a previous version of c to improve on this one

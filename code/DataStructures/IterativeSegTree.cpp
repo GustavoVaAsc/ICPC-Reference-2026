@@ -12,7 +12,7 @@ public:
         while(d<n) d<<=1;
         segtree.assign(2*d, 0);
         for(int i=0; i<n; i++)
-            segtree[d+i] = 1;
+            segtree[d+i] = a[i];
         
         for(int i=d-1; i>=1; i--)
             segtree[i] = segtree[2*i] + segtree[2*i+1];

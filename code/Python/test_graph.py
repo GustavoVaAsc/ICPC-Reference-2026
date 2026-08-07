@@ -14,10 +14,7 @@ class Edge:
 
 
 with open("in.txt",'w') as f:
-    if m != n-1:
-        f.write(str(n)+" "+str(m)+'\n')
-    else:
-        f.write(str(n)+'\n')
+    f.write(str(n)+" "+str(m)+'\n')
     edges = set()
     for i in range(m):
         u,v = [0,0]

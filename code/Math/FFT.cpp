@@ -1,7 +1,5 @@
-// MAX should be a power of 2 and >= 2*10^5
-// FFT works with sizes that are powers of 2
-// 2^18 = 262144 > 200000
-const int MAX = pow(2,18); 
+// FFT works with sizes that are powers of 2.
+// The size should be >= n+m-1 where n,m are input sizes.
  
 typedef complex<double> cd;
 double PI = acos(-1);
@@ -59,27 +57,29 @@ void solve() {
  
     reverse(msk.begin(), msk.end());
  
-    vector<cd> a(2*MAX,cd(0,0)), b(2*MAX,cd(0,0));
-    
+    int sz = 1;
+    while (sz < n + m - 1) sz <<= 1;
+    vector<cd> a(sz, cd(0,0)), b(sz, cd(0,0));
+ 
     for(int i=0; i<n; i++){
-        a[i]+=cd(s[i],0);
+        a[i] += cd(s[i],0);
     }
-    
-    
+ 
+ 
     for(int i=0; i<m; i++){
-        b[i]+=cd(msk[i],0);
+        b[i] += cd(msk[i],0);
     }
-    
+ 
     auto A = fft(a);
     auto B = fft(b);
-    vector<cd> C(2*MAX);
+    vector<cd> C(sz);
  
-    for(int i = 0; i < 2*MAX; i++){
+    for(int i = 0; i < sz; i++){
         C[i] = A[i] * B[i];
     }
  
     auto conv = fft(C, -1);
-    
+ 
     for(int i = 0; i < n+m-1; i++){
         cout << (ll)round(conv[i].real()) << " ";
     }

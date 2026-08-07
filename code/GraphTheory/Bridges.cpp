@@ -9,7 +9,7 @@ int dfsBR(int u, int p) {
                           // if we go back is because we found another way back
     if (!disc[v]) { // if V has not been discovered before
       dfsBR(v, u);  // recursive DFS call
-      if (disc[u] < low[v]) // condition to find a bridge
+      if (low[v] > disc[u]) // condition to find a bridge
         br.push_back({u, v});
       low[u] = min(low[u], low[v]); // low[v] might be an ancestor of u
     } else // if v was already discovered means that we found an ancestor
@@ -22,5 +22,5 @@ void BR() {
   Time = 0;
   for (int u = 0; u < adj.size(); u++)
     if (!disc[u])
-      dfsBR(u, u)
+      dfsBR(u, u);
 }
