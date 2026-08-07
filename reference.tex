@@ -113,7 +113,7 @@
     
     \vspace{1.5cm}
     
-    {\Large ICPC Reference (Date 0 version)}
+    {\Large ICPC Reference}
     
     \vspace{2cm}
     
@@ -158,7 +158,7 @@
 \subsection{Regular input}
 
 \lstinputlisting[language=Python]{code/Python/input.py}
-\subsection{Fast I/O (If we use this, we're down bad)}
+\subsection{Fast I/O}
 
 \lstinputlisting[language=Python]{code/Python/fastio.py}
 
@@ -256,7 +256,7 @@ We must be careful with these functions since they could blow into $O(2^n)$ comp
     \hline
     partial\_sum & begin, end, dest, [op] & Compute prefix sums \\
     \hline
-    \_\_gcd & a, b & Greatest common divisor (C++17) \\
+    \_\_gcd & a, b & Greatest common divisor (GCC ext.) \\
     \hline
     lcm & a, b & Least common multiple (C++17) \\
     \hline
@@ -438,11 +438,11 @@ We must be careful with these functions since they could blow into $O(2^n)$ comp
 \lstinputlisting[language=C++]{code/GraphTheory/Dinic.cpp}
 \subsection{Directed Cycles}
 \lstinputlisting[language=C++]{code/GraphTheory/DirectedCycles.cpp}
-\subsection{Edmond-Karp}
-\lstinputlisting[language=C++]{code/GraphTheory/EdmondKarp.cpp}
+\subsection{Edmonds-Karp}
+\lstinputlisting[language=C++]{code/GraphTheory/EdmondsKarp.cpp}
 \subsection{Floyd-Warshall}
 \lstinputlisting[language=C++]{code/GraphTheory/FloydWarshall.cpp}
-\subsection{Kahn Topological Sort (Python)}
+\subsection{Kahn Topological Sort}
 \lstinputlisting[language=Python]{code/GraphTheory/KahnTopoSort.py}
 \subsection{Kruskal}
 \lstinputlisting[language=C++]{code/GraphTheory/Kruskal.cpp}
@@ -499,7 +499,7 @@ We must be careful with these functions since they could blow into $O(2^n)$ comp
 \subsection{Lazy Segment Tree (Max)}
 \lstinputlisting[language=C++]{code/DataStructures/LazySegTreeMax.cpp}
 \subsection{Lazy Segment Tree (Sum)}
-\lstinputlisting[language=C++]{code/DataStructures/LazySegTreeZum.cpp}
+\lstinputlisting[language=C++]{code/DataStructures/LazySegTreeSum.cpp}
 \subsection{Lazy Treap}
 \lstinputlisting[language=C++]{code/DataStructures/LazyTreap.cpp}
 \subsection{Merge Sort Tree}
@@ -617,21 +617,21 @@ The number of divisors of any number n is:
 a = k \cdot (m^2 - n^2), \quad b = k\cdot(2mn), \quad c = k\cdot(m^2+n^2)
 \]
 
-With $m>n>0$, $k=0$, $m\perp n$, and either m or n even.
+With $m>n>0$, $k \geq 1$, $m\perp n$, and either m or n even.
 
 
-\subsection{Derangments}
+\subsection{Derangements}
 
-Permutations of a set sush that none of the elements appear in their original position.
+Permutations of a set such that none of the elements appear in their original position.
 
 \[
-D(n) = (n-1)(D(n-1)+D(n-2)) = nD(n-1)+(-1)^n = \lfloor \frac{n!}{e}\rfloor
+D(n) = (n-1)(D(n-1)+D(n-2)) = nD(n-1)+(-1)^n = \lfloor \frac{n!}{e} + \frac{1}{2} \rfloor
 \]
 
 Pascal triangle facts:
 \begin{align*}
 \sum_{k=0}^{n}\binom{n}{k} &= 2^n, \qquad
-\sum_{k=0}^{n}(-1)^k\binom{n}{k} = 0
+\sum_{k=0}^{n}(-1)^k\binom{n}{k} = 0 \quad (n \geq 1)
 \end{align*}
 
 \subsubsection{Sums}
@@ -649,7 +649,7 @@ Useful finite progressions:
 \sum_{i=0}^{n-1} (a+id) = \frac{n}{2}\left(2a+(n-1)d\right)
 \end{align*}
 
-Rare progessions:
+Rare progressions:
 \begin{align*}
 \sum_{i=1}^{n-1} i\cdot (n-i) &= \frac{n(n^2-1)}{6} \\
 \end{align*}
@@ -700,36 +700,35 @@ Stars and bars (nonnegative solutions of $x_1+\cdots+x_k=n$):
 
 \subsection{Manhattan Distance on a Grid}
 
-For calculating the sum of Manhattan distances between all pairs of points in an $n \times m$ grid, we can use the following:
+For the sum of Manhattan distances between all pairs of points in an $n \times m$ grid:
 
-\textbf{NOTE}: The block must have a constant height.
-
-Compress the nxm into the x axis, living a row of m points, each section has n points.
+Compress the $n \times m$ grid along the $x$ axis, leaving a row of $m$ points where each column has $n$ points. The horizontal contribution is:
 
 \begin{align*}
-D = \sum_{i=1}^{K} n^2 \frac{m(m^2 - 1)}{6}
+D_x = n^2 \frac{m(m^2 - 1)}{6}
 \end{align*}
 
-Do the same for the y axis, and add them together.
+Do the same along the $y$ axis:
+
 \begin{align*}
-D = \sum_{i=1}^{K} m^2 \frac{n(n^2 - 1)}{6}
+D_y = m^2 \frac{n(n^2 - 1)}{6}
 \end{align*}
 
-Total
+Total pairwise Manhattan distance in the grid:
+
 \begin{align*}
-D = \sum_{i=1}^{K} n^2 \frac{m(m^2 - 1)}{6} + m^2 \frac{n(n^2 - 1)}{6}
+D = n^2 \frac{m(m^2 - 1)}{6} + m^2 \frac{n(n^2 - 1)}{6}
 \end{align*}
 
-For calculating all external Manhattan distances between many blocks:
+For the external Manhattan distances between $K$ disjoint rectangular blocks:
+
+\textbf{NOTE}: Each block must have a constant height (same number of rows).
 
 \begin{align*}
 D_{\text{external}} = \sum_{i=1}^{K-1} \sum_{j=i+1}^{K} A_i A_j C_{ij}
 \end{align*}
 
-Where $A_i$ is the area of block i, and $C_{ij}$ is the Manhattan distance between the centers of blocks i and j on 1D dimension.
-Repat same formula for y axis, and add them together.
-
-To get the center just divide the x and y coordinates by 2, doesn't if it's not integer.
+Where $A_i$ is the area of block $i$, and $C_{ij}$ is the Manhattan distance between the centers of blocks $i$ and $j$ projected onto one axis. Repeat the same formula for the $y$ axis and add the two contributions. To get a block's center, average the $x$ and $y$ coordinates of its corners; it doesn't have to be an integer.
 
 
 
@@ -738,7 +737,7 @@ To get the center just divide the x and y coordinates by 2, doesn't if it's not 
 \subsection{Binomial Coefficients}
 \lstinputlisting[language=C++]{code/Math/BinomialCoefficients.cpp}
 \subsection{Extended Euclidean}
-\lstinputlisting[language=C++]{code/Math/ExtendedEuclidian.cpp}
+\lstinputlisting[language=C++]{code/Math/ExtendedEuclidean.cpp}
 \subsection{FFT}
 \lstinputlisting[language=C++]{code/Math/FFT.cpp}
 \subsection{Big Integer}
@@ -780,7 +779,7 @@ To get the center just divide the x and y coordinates by 2, doesn't if it's not 
 \subsection{Segmented Sieve}
 \lstinputlisting[language=C++]{code/Math/SegmentedSieve.cpp}
 \subsection{Sieve of Eratosthenes}
-\lstinputlisting[language=C++]{code/Math/SieveOfErathostenes.cpp}
+\lstinputlisting[language=C++]{code/Math/SieveOfEratosthenes.cpp}
 \subsection{Simpson Method}
 \lstinputlisting[language=C++]{code/Math/SimpsonMethod.cpp}
 \subsection{Precompute Pascal Triangle}
@@ -792,7 +791,7 @@ To get the center just divide the x and y coordinates by 2, doesn't if it's not 
 \subsection{Ternary Search}
 \lstinputlisting[language=C++]{code/Math/TernarySearch.cpp}
 \subsection{Trivial Factorization}
-\lstinputlisting[language=C++]{code/Math/TrivialFactorizartion.cpp}
+\lstinputlisting[language=C++]{code/Math/TrivialFactorization.cpp}
 
 \section{String Algorithms}
 \subsection{Aho-Corasick}
@@ -890,13 +889,13 @@ To get the center just divide the x and y coordinates by 2, doesn't if it's not 
 
 \section{Miscellaneous}
 \subsection{2D Prefix Sum}
-\lstinputlisting[language=C++]{code/Miscellaneous/2DPrefixZum.cpp}
+\lstinputlisting[language=C++]{code/Miscellaneous/2DPrefixSum.cpp}
 \subsection{Kadane}
 \lstinputlisting[language=C++]{code/Miscellaneous/Kadane.cpp}
 \subsection{Index Compression}
 \lstinputlisting[language=C++]{code/Miscellaneous/IndexCompression.cpp}
 \subsection{Berlekamp-Massey}
-\lstinputlisting[language=C++]{code/Miscellaneous/BerlekampMessey.cpp}
+\lstinputlisting[language=C++]{code/Miscellaneous/BerlekampMassey.cpp}
 \subsection{Moore's Voting}
 \lstinputlisting[language=C++]{code/Miscellaneous/MooresVoting.cpp}
 \subsection{Compiler Optimizations}
