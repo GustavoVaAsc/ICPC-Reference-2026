@@ -1,0 +1,94 @@
+\emph{The "must-know" Python \texttt{re} functions (and their runtimes).}
+
+\begin{description}
+    \item[\texttt{re.match(pattern, string, flags=0)}] Test start of \texttt{string}. \emph{O(n)} avg, exponential worst case.
+    \item[\texttt{re.search(pattern, string, flags=0)}] Find first match anywhere in \texttt{string}. \emph{O(n)} avg, exponential worst case.
+    \item[\texttt{re.fullmatch(pattern, string, flags=0)}] Match entire string. \emph{O(n)} avg, exponential worst case.
+    \item[\texttt{re.compile(pattern, flags=0)}] Pre-compile pattern. \emph{O(m)} pattern length.
+    \item[\texttt{re.findall(pattern, string, flags=0)}] All non-overlapping matches. \emph{O(n)} avg.
+    \item[\texttt{re.finditer(pattern, string, flags=0)}] Iterator of matches. \emph{O(n)} avg.
+    \item[\texttt{re.split(pattern, string, maxsplit=0, flags=0)}] Split at matches. \emph{O(n)} avg.
+    \item[\texttt{re.sub(pattern, repl, string, count=0, flags=0)}] Replace matches. \emph{O(n)} avg.
+    \item[\texttt{re.subn(pattern, repl, string, count=0, flags=0)}] Replace + count. \emph{O(n)} avg.
+    \item[\texttt{re.escape(string)}] Escape metacharacters. \emph{O(m)} m = input length.
+    \item[\texttt{re.finditer} + \texttt{match.group()}] Extract captured groups.
+    \item[\texttt{re.Scanner} (rare)] Multi-pattern scanner for tokenizers.
+\end{description}
+
+\medskip
+
+\textbf{General rule of thumb:} \emph{If your pattern does not contain nested quantifiers or back-references, the engine runs in \textbf{linear time} in the length of the input string.}
+\textit{If you do have nested \texttt{*}, \texttt{+}, \texttt{\{m,n\}} or back-references, the worst-case becomes \textbf{exponential} - this is the "catastrophic backtracking" phenomenon.}
+
+\subsection*{Why the exponential blow-up happens}
+
+Python's regex engine is a \textbf{back-tracking NFA}.
+When the engine tries a branch (e.g., a \texttt{.} that can match any character) it keeps a stack of alternatives. If the branch fails later, it \textbf{pops} to the previous branch and tries the next alternative.
+If a pattern has $k$ nested alternations, the number of states explored can be as high as \textbf{2$^k$}.
+
+Typical examples:
+
+\begin{lstlisting}[language=Python]
+pattern = r'^(a+)+$'          # matches only "a", but the engine explores 2^(len(s)) possibilities
+\end{lstlisting}
+
+\textbf{Tip:} If you ever hit a "too slow" regex, try to rewrite it so that the number of back-tracking branches is bounded or replace it with a deterministic automaton (e.g., use \texttt{re.fullmatch(r'[a-z]+')} instead of \texttt{re.match(r'.*')}).
+
+\subsection*{Pre-compilation matters}
+
+\begin{lstlisting}[language=Python]
+pat = re.compile(r'\bfoo\b')
+for line in sys.stdin:
+    if pat.search(line):
+        ...
+\end{lstlisting}
+
+\textit{Compiling once} keeps the \textbf{O(m)} cost to a single place, then every call to \texttt{search}, \texttt{match}, or \texttt{sub} runs in \emph{O(n)}.
+
+\subsection*{Quick-reference cheat-sheet}
+
+\begin{lstlisting}[language=Python]
+import re
+
+# 1. Basic matching
+re.match(r'foo', 'foobar')          # <re.Match object>
+re.search(r'bar', 'foobar')         # <re.Match object>
+re.fullmatch(r'foo', 'foo')        # <re.Match object>
+
+# 2. Find all / finditer
+re.findall(r'\d+', 'a12b34')        # ['12', '34']
+re.finditer(r'\d+', 'a12b34')       # iterator over <Match> objects
+
+# 3. Replace
+re.sub(r'\d+', '#', 'a12b34')       # 'a#b#'
+re.subn(r'\d+', '#', 'a12b34')     # ('a#b#', 2)
+
+# 4. Split
+re.split(r'\W+', 'a,b;c')           # ['a', 'b', 'c']
+
+# 5. Escape a literal
+re.escape(r'foo.bar*')              # 'foo\\.bar\\*'
+
+# 6. Pre-compile
+pat = re.compile(r'\bfoo\b')
+for line in sys.stdin:
+    if pat.search(line):
+        ...
+\end{lstlisting}
+
+\subsection*{Summary of complexities}
+
+\textbf{Complexity summary} (all worst cases are $2^k$ where $k$ is the number of nested quantifiers):
+
+\begin{itemize}
+    \item \texttt{match}, \texttt{search}, \texttt{fullmatch}: \emph{O(n)} avg. Watch for \texttt{.*}, \texttt{.+}, or back-references in the pattern.
+    \item \texttt{findall}, \texttt{finditer}: \emph{O(n)} avg. Non-overlapping matches.
+    \item \texttt{split}: \emph{O(n)} avg. Avoid \texttt{.+?} inside the separator.
+    \item \texttt{sub}, \texttt{subn}: \emph{O(n)} avg. Replacement string or callable.
+    \item \texttt{escape}: \emph{O(m)} avg and worst. Any literal.
+    \item \texttt{compile}: \emph{O(m)} avg. Pre-compile once per program run.
+\end{itemize}
+
+\medskip
+
+\textbf{Bottom line:} For the vast majority of CP problems you will never hit the exponential worst-case.  Just avoid nested quantifiers or back-references, and you're safely in linear-time territory.  When you do need them, test the regex on a few worst-case inputs to be sure it runs in time.
