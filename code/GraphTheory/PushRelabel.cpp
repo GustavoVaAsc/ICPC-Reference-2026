@@ -1,81 +1,41 @@
-/**
- * Push-Relabel Max-Flow (Highest-Label + Gap Relabeling)
- * Time: O(V^2 sqrt(E)) worst case, faster than Dinic on dense graphs
- * Based on KACTL PushRelabel.h
- */
-
+// Push-relabel max flow (highest label + gap), O(V^2 sqrt(E)) worst, very fast in practice.
+// addEdge(s,t,cap[,rcap for undirected]); calc(s,t). leftOfMinCut(v) after calc.
 #include <bits/stdc++.h>
 using namespace std;
-
-using ll = long long;
-const ll INF = LLONG_MAX;
-
+typedef long long ll;
 struct PushRelabel {
-    struct Edge {
-        int dest, back;
-        ll f, c;
-    };
-
-    int n;
-    vector<vector<Edge>> g;
-    vector<ll> ec;       // excess capacity
-    vector<Edge*> cur;   // current edge pointer
-    vector<vector<int>> hs;
-    vector<int> H;
-
-    PushRelabel(int n) : n(n), g(n), ec(n), cur(n), hs(2 * n), H(n) {}
-
-    void add_edge(int u, int v, ll cap) {
-        if (u == v) return;
-        g[u].push_back({v, (int)g[v].size(), 0, cap});
-        g[v].push_back({u, (int)g[u].size() - 1, 0, 0});
-    }
-
-    void addFlow(Edge& e, ll f) {
-        Edge& back = g[e.dest][e.back];
-        if (!ec[e.dest] && f) hs[H[e.dest]].push_back(e.dest);
-        e.f += f;
-        e.c -= f;
-        ec[e.dest] += f;
-        back.f -= f;
-        back.c += f;
-        ec[back.dest] -= f;
-    }
-
-    ll max_flow(int s, int t) {
-        int v = n;
-        H[s] = v;
-        ec[t] = 1;
-        vector<int> co(2 * v);
-        co[0] = v - 1;
-        for (int i = 0; i < v; i++) cur[i] = g[i].data();
-
-        for (Edge& e : g[s]) addFlow(e, e.c);
-
-        for (int hi = 0;;) {
-            while (hs[hi].empty()) if (hi-- == 0) return -ec[s];
-            int u = hs[hi].back();
-            hs[hi].pop_back();
-
-            while (ec[u] > 0) {  // discharge u
-                if (cur[u] == g[u].data() + (int)g[u].size()) {
-                    H[u] = INT_MAX;
-                    for (Edge& e : g[u])
-                        if (e.c && H[u] > H[e.dest] + 1)
-                            H[u] = H[e.dest] + 1, cur[u] = &e;
-                    if (++co[H[u]], !--co[hi] && hi < v)
-                        for (int i = 0; i < v; i++)
-                            if (hi < H[i] && H[i] < v)
-                                --co[H[i]], H[i] = v + 1;
-                    hi = H[u];
-                } else if (cur[u]->c && H[u] == H[cur[u]->dest] + 1)
-                    addFlow(*cur[u], min(ec[u], cur[u]->c));
-                else
-                    ++cur[u];
-            }
-        }
-    }
-
-    // Returns true if vertex is on the source side of min cut
-    bool left_of_min_cut(int a) { return H[a] >= n; }
+	struct Edge { int dest, back; ll f, c; };
+	vector<vector<Edge>> g; vector<ll> ec; vector<Edge *> cur; vector<vector<int>> hs; vector<int> H;
+	PushRelabel(int n) : g(n), ec(n), cur(n), hs(2 * n), H(n) {}
+	void addEdge(int s, int t, ll cap, ll rcap = 0) {
+		if (s == t) return;
+		g[s].push_back({t, (int)g[t].size(), 0, cap});
+		g[t].push_back({s, (int)g[s].size() - 1, 0, rcap});
+	}
+	void addFlow(Edge &e, ll f) {
+		Edge &back = g[e.dest][e.back];
+		if (!ec[e.dest] && f) hs[H[e.dest]].push_back(e.dest);
+		e.f += f; e.c -= f; ec[e.dest] += f;
+		back.f -= f; back.c += f; ec[back.dest] -= f;
+	}
+	ll calc(int s, int t) {
+		int v = g.size(); H[s] = v; ec[t] = 1;
+		vector<int> co(2 * v); co[0] = v - 1;
+		for (int i = 0; i < v; i++) cur[i] = g[i].data();
+		for (Edge &e : g[s]) addFlow(e, e.c);
+		for (int hi = 0;;) {
+			while (hs[hi].empty()) if (!hi--) return -ec[s];
+			int u = hs[hi].back(); hs[hi].pop_back();
+			while (ec[u] > 0)
+				if (cur[u] == g[u].data() + g[u].size()) {
+					H[u] = 1e9;
+					for (Edge &e : g[u]) if (e.c && H[u] > H[e.dest] + 1) H[u] = H[e.dest] + 1, cur[u] = &e;
+					if (++co[H[u]], !--co[hi] && hi < v)
+						for (int i = 0; i < v; i++) if (hi < H[i] && H[i] < v) --co[H[i]], H[i] = v + 1;
+					hi = H[u];
+				} else if (cur[u]->c && H[u] == H[cur[u]->dest] + 1) addFlow(*cur[u], min(ec[u], cur[u]->c));
+				else ++cur[u];
+		}
+	}
+	bool leftOfMinCut(int a) { return H[a] >= (int)g.size(); }
 };

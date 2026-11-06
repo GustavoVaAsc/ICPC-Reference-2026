@@ -1,100 +1,91 @@
-#include <bits/stdc++.h>
-using namespace std;
 using ll = long long;
 
-const ll LINF = numeric_limits<ll>::max() / 4;
-
-struct MCMFEdge {
-    int to, rev;
-    ll cap, cost;
-};
+// Min-Cost Max-Flow (successive shortest augmenting path with potentials)
+// Main use cases:
+// 1) Assignment / matching with costs.
+// 2) K disjoint paths with minimum total cost.
+// 3) Flow with capacities and optimization objective (minimize total cost).
+// Complexity: O(F * M log N), F = total sent flow.
 
 struct MinCostMaxFlow {
-    int n, s, t;
-    ll flow_ = 0, cost_ = 0;
-    vector<vector<MCMFEdge>> adj;
-    vector<ll> pot, dist;
-    vector<int> prevnode, prevedge;
+    struct Edge {
+        int to, rev;
+        ll cap, cost;
+    };
 
-    MinCostMaxFlow(int n, int s, int t) : n(n), s(s), t(t) {
-        adj.assign(n, {});
-        pot.resize(n, 0);
-        dist.resize(n);
-        prevnode.resize(n);
-        prevedge.resize(n);
+    int n;
+    vector<vector<Edge>> g;
+
+    explicit MinCostMaxFlow(int n_) : n(n_), g(n_) {}
+
+    void addEdge(int s, int t, ll cap, ll cost) {
+        Edge a{t, (int)g[t].size(), cap, cost};
+        Edge b{s, (int)g[s].size(), 0, -cost};
+        g[s].push_back(a);
+        g[t].push_back(b);
     }
 
-    void add_edge(int from, int to, ll cap, ll cost) {
-        MCMFEdge a{to, (int)adj[to].size(), cap, cost};
-        MCMFEdge b{from, (int)adj[from].size(), 0, -cost};
-        adj[from].push_back(a);
-        adj[to].push_back(b);
-    }
+    // Returns {flow, min_cost}.
+    pair<ll, ll> minCostMaxFlow(int s, int t, ll maxf = (ll)4e18) {
+        const ll INF = (ll)4e18;
 
-    bool dijkstra() {
-        fill(dist.begin(), dist.end(), LINF);
-        fill(prevnode.begin(), prevnode.end(), -1);
-        priority_queue<pair<ll, int>, vector<pair<ll, int>>, greater<pair<ll, int>>> pq;
+        ll flow = 0, flowCost = 0;
+        vector<ll> pot(n, 0), dist(n);
+        vector<int> pvNode(n), pvEdge(n);
 
-        dist[s] = 0;
-        pq.emplace(0, s);
+        while (flow < maxf) {
+            fill(dist.begin(), dist.end(), INF);
+            dist[s] = 0;
 
-        while (!pq.empty()) {
-            auto [d, v] = pq.top();
-            pq.pop();
-            if (d != dist[v]) continue;
-            for (int i = 0; i < (int)adj[v].size(); i++) {
-                MCMFEdge &e = adj[v][i];
-                if (e.cap <= 0) continue;
-                ll ndist = dist[v] + e.cost + pot[v] - pot[e.to];
-                if (ndist < dist[e.to]) {
-                    dist[e.to] = ndist;
-                    prevnode[e.to] = v;
-                    prevedge[e.to] = i;
-                    pq.emplace(ndist, e.to);
+            priority_queue<pair<ll, int>, vector<pair<ll, int>>, greater<pair<ll, int>>> pq;
+            pq.push({0, s});
+
+            while (!pq.empty()) {
+                auto [d, u] = pq.top();
+                pq.pop();
+                if (d != dist[u]) continue;
+
+                for (int i = 0; i < (int)g[u].size(); i++) {
+                    const Edge& e = g[u][i];
+                    if (e.cap <= 0) continue;
+
+                    ll nd = d + e.cost + pot[u] - pot[e.to];
+                    if (nd < dist[e.to]) {
+                        dist[e.to] = nd;
+                        pvNode[e.to] = u;
+                        pvEdge[e.to] = i;
+                        pq.push({nd, e.to});
+                    }
                 }
             }
+
+            if (dist[t] == INF) break;
+            for (int v = 0; v < n; v++) {
+                if (dist[v] < INF) pot[v] += dist[v];
+            }
+
+            ll add = maxf - flow;
+            for (int v = t; v != s; v = pvNode[v]) {
+                const Edge& e = g[pvNode[v]][pvEdge[v]];
+                add = min(add, e.cap);
+            }
+
+            for (int v = t; v != s; v = pvNode[v]) {
+                Edge& e = g[pvNode[v]][pvEdge[v]];
+                Edge& r = g[v][e.rev];
+                e.cap -= add;
+                r.cap += add;
+                flowCost += add * e.cost;
+            }
+
+            flow += add;
         }
 
-        if (dist[t] == LINF) return false;
-
-        for (int i = 0; i < n; i++) {
-            if (dist[i] < LINF) pot[i] += dist[i];
-        }
-
-        return true;
+        return {flow, flowCost};
     }
-
-    void augment() {
-        ll addflow = LINF;
-        for (int v = t; v != s; v = prevnode[v]) {
-            MCMFEdge &e = adj[prevnode[v]][prevedge[v]];
-            addflow = min(addflow, e.cap);
-        }
-
-        for (int v = t; v != s; v = prevnode[v]) {
-            MCMFEdge &e = adj[prevnode[v]][prevedge[v]];
-            e.cap -= addflow;
-            adj[e.to][e.rev].cap += addflow;
-        }
-
-        flow_ += addflow;
-        cost_ += addflow * pot[t];
-    }
-
-    pair<ll, ll> min_cost_flow(int s, int t) {
-        this->s = s;
-        this->t = t;
-        flow_ = 0;
-        cost_ = 0;
-        fill(pot.begin(), pot.end(), 0);
-
-        while (dijkstra()) {
-            augment();
-        }
-        return {flow_, cost_};
-    }
-
-    ll flow() const { return flow_; }
-    ll cost() const { return cost_; }
 };
+
+// Example of use:
+// MinCostMaxFlow mcmf(N);
+// mcmf.addEdge(u, v, cap, cost);
+// auto [flow, cost] = mcmf.minCostMaxFlow(source, sink);

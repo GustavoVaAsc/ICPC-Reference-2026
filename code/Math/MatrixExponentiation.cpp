@@ -1,49 +1,57 @@
-// Matrix exponentiation: A^n in O(k^3 log n) for kxk matrix.
-// Templated on element type (ll, modint, etc.).
+using ll = long long;
 
-#include <vector>
+// Generic Matrix Exponentiation (mod M)
+// Main use cases:
+// 1) Linear recurrences (Fibonacci, k-step recurrences) in O(k^3 log n).
+// 2) Count walks of length k in graphs using adjacency matrix powers.
+// 3) Transition DP with fixed-size state transitions.
 
-template<class T>
 struct Matrix {
     int n;
-    std::vector<std::vector<T>> a;
+    ll mod;
+    vector<vector<ll>> a;
 
-    Matrix() {}
-    Matrix(int _n, int _m, T val = T{}) : n(_n), a(_n, std::vector<T>(_m, val)) {}
-
-    static Matrix identity(int n) {
-        Matrix res(n, n);
-        for (int i = 0; i < n; i++)
-            res.a[i][i] = T{1};
-        return res;
+    Matrix(int n_, ll mod_, bool identity = false) : n(n_), mod(mod_), a(n_, vector<ll>(n_, 0)) {
+        if (identity) {
+            for (int i = 0; i < n; i++) a[i][i] = 1;
+        }
     }
 
-    Matrix operator+(const Matrix& o) const {
-        Matrix res(n, o.n);
-        for (int i = 0; i < n; i++)
-            for (int j = 0; j < n; j++)
-                res.a[i][j] = a[i][j] + o.a[i][j];
-        return res;
+    static Matrix multiply(const Matrix& A, const Matrix& B) {
+        Matrix C(A.n, A.mod, false);
+        for (int i = 0; i < A.n; i++) {
+            for (int k = 0; k < A.n; k++) {
+                if (A.a[i][k] == 0) continue;
+                for (int j = 0; j < A.n; j++) {
+                    C.a[i][j] = (C.a[i][j] + A.a[i][k] * B.a[k][j]) % A.mod;
+                }
+            }
+        }
+        return C;
     }
 
-    Matrix operator*(const Matrix& o) const {
-        int m = o.n;
-        Matrix res(n, m);
-        for (int i = 0; i < n; i++)
-            for (int k = 0; k < n; k++) if (a[i][k] != T{})
-                for (int j = 0; j < m; j++)
-                    res.a[i][j] += a[i][k] * o.a[k][j];
-        return res;
-    }
-
-    Matrix pow(long long e) const {
-        Matrix res = identity(n);
-        Matrix base = *this;
-        while (e > 0) {
-            if (e & 1) res = res * base;
-            base = base * base;
-            e >>= 1;
+    static Matrix power(Matrix base, long long exp) {
+        Matrix res(base.n, base.mod, true);
+        while (exp > 0) {
+            if (exp & 1LL) res = multiply(res, base);
+            base = multiply(base, base);
+            exp >>= 1LL;
         }
         return res;
     }
 };
+
+// Example use case 1: Fibonacci(n) mod MOD.
+// [F(n+1)]   [1 1]^n [F(1)]
+// [F(n)  ] = [1 0]   [F(0)]
+ll fibonacciMatrix(long long n, ll MOD) {
+    if (n == 0) return 0;
+    Matrix T(2, MOD);
+    T.a = {{1, 1}, {1, 0}};
+    Matrix P = Matrix::power(T, n - 1);
+    ll F1 = 1, F0 = 0;
+    return (P.a[0][0] * F1 + P.a[0][1] * F0) % MOD;
+}
+
+// Contest note:
+// For non-square transitions (state vectors), wrap the vector as Nx1 matrix.

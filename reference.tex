@@ -424,7 +424,6 @@ We must be careful with these functions since they could blow into $O(2^n)$ comp
 
 \section{Binary Search in the Answer}
 \lstinputlisting[language=C++]{code/BinarySearch/AllBinSearches.cpp}
-
 \subsection{Parallel Binary Search}
 \lstinputlisting[language=C++]{code/BinarySearch/ParallelBinarySearch.cpp}
 
@@ -437,19 +436,8 @@ We must be careful with these functions since they could blow into $O(2^n)$ comp
 \lstinputlisting[language=C++]{code/Bitwise/GrayCode.cpp}
 \subsection{XOR Basis}
 \lstinputlisting[language=C++]{code/Bitwise/XORBasis.cpp}
-
-\subsection{Hopcroft-Karp}
-\lstinputlisting[language=C++]{code/GraphTheory/HopcroftKarp.cpp}
-\subsection{Min-Cost Max-Flow}
-\lstinputlisting[language=C++]{code/GraphTheory/MinCostMaxFlow.cpp}
-\subsection{Push-Relabel}
-\lstinputlisting[language=C++]{code/GraphTheory/PushRelabel.cpp}
-\subsection{0-1 BFS}
-\lstinputlisting[language=C++]{code/GraphTheory/0-1BFS.cpp}
-\subsection{Biconnected Components}
-\lstinputlisting[language=C++]{code/GraphTheory/BiconnectedComponents.cpp}
-\subsection{Johnson's Algorithm}
-\lstinputlisting[language=C++]{code/GraphTheory/JohnsonsAlgorithm.cpp}
+\subsection{Fast Subset Convolution}
+\lstinputlisting[language=C++]{code/Bitwise/FastSubsetConvolution.cpp}
 
 \section{Graph Theory}
 \subsection{Bellman-Ford}
@@ -474,6 +462,8 @@ We must be careful with these functions since they could blow into $O(2^n)$ comp
 \lstinputlisting[language=C++]{code/GraphTheory/LavaFlow.cpp}
 \subsection{Negative Cycles}
 \lstinputlisting[language=C++]{code/GraphTheory/NegativeCycles.cpp}
+\subsection{Johnson's Algorithm}
+\lstinputlisting[language=C++]{code/GraphTheory/JohnsonsAlgorithm.cpp}
 \subsection{Prim Algorithm}
 \lstinputlisting[language=C++]{code/GraphTheory/PrimAlgorithm.cpp}
 \subsection{Strongly Connected Components}
@@ -482,6 +472,8 @@ We must be careful with these functions since they could blow into $O(2^n)$ comp
 \lstinputlisting[language=C++]{code/GraphTheory/TopologicalSort.cpp}
 \subsection{2-SAT}
 \lstinputlisting[language=C++]{code/GraphTheory/TwoSat.cpp}
+\subsection{2-SAT (Template)}
+\lstinputlisting[language=C++]{code/GraphTheory/TwoSatTemplate.cpp}
 \subsection{Undirected Cycles}
 \lstinputlisting[language=C++]{code/GraphTheory/UndirectedCycles.cpp}
 \subsection{Articulation Points}
@@ -492,21 +484,63 @@ We must be careful with these functions since they could blow into $O(2^n)$ comp
 \lstinputlisting[language=C++]{code/GraphTheory/BridgesOnline.cpp}
 \subsection{Bridge Tree}
 \lstinputlisting[language=C++]{code/GraphTheory/BridgeTree.cpp}
+\subsection{Biconnected Components}
+\lstinputlisting[language=C++]{code/GraphTheory/BiconnectedComponents.cpp}
 \subsection{Dynamic Connectivity}
 \lstinputlisting[language=C++]{code/GraphTheory/DynamicConnectivity.cpp}
+\subsection{Dynamic Connectivity (Link-Cut Tree)}
+\lstinputlisting{code/GraphTheory/DynamicConnectivityLCT.md}
+\subsection{Dynamic Connectivity (Top Tree)}
+\lstinputlisting{code/GraphTheory/DynamicConnectivityTopTree.md}
+\subsection{Fully Dynamic Connectivity (General Graph)}
+\lstinputlisting[language=C++]{code/GraphTheory/FullyDynamicConnectivity.cpp}
+\subsection{Offline Dynamic Connectivity}
+\lstinputlisting[language=C++]{code/GraphTheory/OfflineDynamicConnectivity.cpp}
 \subsection{Eulerian Path}
 \lstinputlisting[language=C++]{code/GraphTheory/EulerianPath.cpp}
 \subsection{Gale-Shapley}
 \lstinputlisting[language=C++]{code/GraphTheory/GaleShapeley.cpp}
 \subsection{Hungarian Algorithm}
 \lstinputlisting[language=C++]{code/GraphTheory/HungarianAlgorithm.cpp}
+\subsection{Hopcroft-Karp}
+\lstinputlisting[language=C++]{code/GraphTheory/HopcroftKarp.cpp}
+\subsection{Minimum Vertex Cover (Bipartite)}
+\lstinputlisting[language=C++]{code/GraphTheory/MinimumVertexCover.cpp}
+\subsection{Maximum Independent Set (Bipartite)}
+\lstinputlisting[language=C++]{code/GraphTheory/MaximumIndependentSet.cpp}
+\subsection{Directed MST (Minimum Arborescence)}
+\lstinputlisting[language=C++]{code/GraphTheory/DirectedMST.cpp}
+\subsection{Min-Cost Max-Flow}
+\lstinputlisting[language=C++]{code/GraphTheory/MinCostMaxFlow.cpp}
 \subsection{SPFA}
 \lstinputlisting[language=C++]{code/GraphTheory/SPFA.cpp}
 \subsection{Tarjan}
 \lstinputlisting[language=C++]{code/GraphTheory/Tarjan.cpp}
-
-\subsection{Sqrt Decomposition}
-\lstinputlisting[language=C++]{code/DataStructures/SqrtDecomposition.cpp}
+\subsection{Edmonds' Blossom (General Matching)}
+\lstinputlisting[language=C++]{code/GraphTheory/Blossom.cpp}
+\subsection{Block-Cut Tree}
+\lstinputlisting[language=C++]{code/GraphTheory/BlockCutTree.cpp}
+\subsection{0-1 BFS}
+% variant A
+\lstinputlisting[language=C++]{code/GraphTheory/ZeroOneBFS.cpp}
+% variant B
+\lstinputlisting[language=C++]{code/GraphTheory/0-1BFS.cpp}
+\subsection{Global Min Cut (Stoer-Wagner)}
+\lstinputlisting[language=C++]{code/GraphTheory/StoerWagner.cpp}
+\subsection{Gomory-Hu Tree}
+\lstinputlisting[language=C++]{code/GraphTheory/GomoryHu.cpp}
+\subsection{Flow with Lower Bounds}
+\lstinputlisting[language=C++]{code/GraphTheory/FlowLowerBounds.cpp}
+\subsection{Dominator Tree}
+\lstinputlisting[language=C++]{code/GraphTheory/DominatorTree.cpp}
+\subsection{Maximum Clique}
+\lstinputlisting[language=C++]{code/GraphTheory/MaxClique.cpp}
+\subsection{Chromatic Number}
+\lstinputlisting[language=C++]{code/GraphTheory/ChromaticNumber.cpp}
+\subsection{K Shortest Paths}
+\lstinputlisting[language=C++]{code/GraphTheory/KthShortestPath.cpp}
+\subsection{Push-Relabel}
+\lstinputlisting[language=C++]{code/GraphTheory/PushRelabel.cpp}
 
 \section{Data Structures}
 \subsection{2D Segment Tree}
@@ -559,16 +593,74 @@ We must be careful with these functions since they could blow into $O(2^n)$ comp
 \lstinputlisting[language=C++]{code/DataStructures/WichoLazySegTree.cpp}
 \subsection{Li Chao Tree}
 \lstinputlisting[language=C++]{code/DataStructures/LiChaoTree.cpp}
-
-\subsection{Mo's Algorithm}
-\lstinputlisting[language=C++]{code/RangeQueries/MoQueries.cpp}
+\subsection{Wavelet Tree}
+\lstinputlisting[language=C++]{code/DataStructures/WaveletTree.cpp}
+\subsection{Monotonic Deque (Sliding Window)}
+\lstinputlisting[language=C++]{code/DataStructures/MonotonicDeque.cpp}
+\subsection{Sqrt Decomposition}
+\lstinputlisting[language=C++]{code/DataStructures/SqrtDecomposition.cpp}
+\subsection{Dynamic Segment Tree}
+\lstinputlisting[language=C++]{code/DataStructures/DynamicSegTree.cpp}
+\subsection{Segment Tree Beats (chmin)}
+\lstinputlisting[language=C++]{code/DataStructures/SegTreeBeats.cpp}
+\subsection{2D Fenwick Tree}
+\lstinputlisting[language=C++]{code/DataStructures/Fenwick2D.cpp}
+\subsection{2D Sparse Table}
+\lstinputlisting[language=C++]{code/DataStructures/SparseTable2D.cpp}
+\subsection{Persistent Treap}
+\lstinputlisting[language=C++]{code/DataStructures/PersistentTreap.cpp}
+\subsection{Leftist Heap}
+\lstinputlisting[language=C++]{code/DataStructures/LeftistHeap.cpp}
 
 \section{Range Queries}
 \subsection{Sparse Table}
 \lstinputlisting[language=C++]{code/RangeQueries/sparse_table.cpp}
+\subsection{Mo's Algorithm}
+% variant A
+\lstinputlisting[language=C++]{code/RangeQueries/MoAlgorithm.cpp}
+% variant B
+\lstinputlisting[language=C++]{code/RangeQueries/MoQueries.cpp}
+\subsection{Mo's Algorithm with Updates}
+\lstinputlisting[language=C++]{code/RangeQueries/MoWithUpdates.cpp}
+\subsection{Mo's Algorithm on Trees}
+\lstinputlisting[language=C++]{code/RangeQueries/MoOnTrees.cpp}
+\subsection{Hilbert Order for Mo}
+\lstinputlisting[language=C++]{code/RangeQueries/HilbertMo.cpp}
 
 \section{Mathematics}
 \subsection{Formula Sheet (Contest)}
+\subsection{Lucas' Theorem}
+\lstinputlisting[language=C++]{code/Math/Lucas.cpp}
+\subsection{Binomial mod Prime Power (Granville)}
+\lstinputlisting[language=C++]{code/Math/GranvilleBinomial.cpp}
+\subsection{Mobius Function and Inversion}
+\lstinputlisting[language=C++]{code/Math/Mobius.cpp}
+\subsection{K-th Term of Linear Recurrence}
+\lstinputlisting[language=C++]{code/Math/LinearRecurrenceKth.cpp}
+\subsection{Simplex}
+\lstinputlisting[language=C++]{code/Math/Simplex.cpp}
+\subsection{Primitive Root}
+\lstinputlisting[language=C++]{code/Math/PrimitiveRoot.cpp}
+\subsection{Tonelli-Shanks (Modular Square Root)}
+\lstinputlisting[language=C++]{code/Math/TonelliShanks.cpp}
+\subsection{Lagrange Interpolation}
+\lstinputlisting[language=C++]{code/Math/LagrangeInterpolation.cpp}
+\subsection{Polynomial Toolkit (NTT)}
+\lstinputlisting[language=C++]{code/Math/PolynomialNTT.cpp}
+\subsection{Gaussian Elimination mod 2 (Bitset)}
+\lstinputlisting[language=C++]{code/Math/GaussXorBitset.cpp}
+\subsection{Floor Sum}
+\lstinputlisting[language=C++]{code/Math/FloorSum.cpp}
+\subsection{Lucy Prime Counting}
+\lstinputlisting[language=C++]{code/Math/LucyPrimeCount.cpp}
+\subsection{Fraction}
+\lstinputlisting[language=C++]{code/Math/Fraction.cpp}
+\subsection{Continued Fractions and Stern-Brocot}
+\lstinputlisting[language=C++]{code/Math/ContinuedFractions.cpp}
+\subsection{Matrix-Tree Theorem}
+\lstinputlisting[language=C++]{code/Math/MatrixTree.cpp}
+\subsection{Counting Numbers (Stirling, Bell, Burnside, Partitions)}
+\lstinputlisting[language=C++]{code/Math/FormulaSheetCounting.cpp}
 
 \subsubsection{Combinatorics}
 \begin{align*}
@@ -768,6 +860,8 @@ Where $A_i$ is the area of block $i$, and $C_{ij}$ is the Manhattan distance bet
 \lstinputlisting[language=C++]{code/Math/BinomialCoefficients.cpp}
 \subsection{Extended Euclidean}
 \lstinputlisting[language=C++]{code/Math/ExtendedEuclidean.cpp}
+\subsection{Chinese Remainder Theorem}
+\lstinputlisting[language=C++]{code/Math/CRT.cpp}
 \subsection{FFT}
 \lstinputlisting[language=C++]{code/Math/FFT.cpp}
 \subsection{Big Integer}
@@ -784,10 +878,14 @@ Where $A_i$ is the area of block $i$, and $C_{ij}$ is the Manhattan distance bet
 \lstinputlisting[language=C++]{code/Math/MatrixDeterminant.cpp}
 \subsection{Matrix Rank}
 \lstinputlisting[language=C++]{code/Math/MatrixRank.cpp}
+\subsection{Matrix Exponentiation}
+\lstinputlisting[language=C++]{code/Math/MatrixExponentiation.cpp}
 \subsection{Gauss-Jordan}
 \lstinputlisting[language=C++]{code/Math/GaussJordan.cpp}
 \subsection{Miller-Rabin (Primality Test)}
 \lstinputlisting[language=C++]{code/Math/MillerRabin.cpp}
+\subsection{Pollard Rho Factorization}
+\lstinputlisting[language=C++]{code/Math/PollardRho.cpp}
 \subsection{Linear Sieve}
 \lstinputlisting[language=C++]{code/Math/LinearSieve.cpp}
 \subsection{Euler Totient Function}
@@ -823,20 +921,14 @@ Where $A_i$ is the area of block $i$, and $C_{ij}$ is the Manhattan distance bet
 \subsection{Trivial Factorization}
 \lstinputlisting[language=C++]{code/Math/TrivialFactorization.cpp}
 
-\subsection{Chinese Remainder Theorem}
-\lstinputlisting[language=C++]{code/Math/CRT.cpp}
 \subsection{Garner's Algorithm}
 \lstinputlisting[language=C++]{code/Math/GarnersAlgorithm.cpp}
 \subsection{Polynomial Operations}
 \lstinputlisting[language=C++]{code/Math/Polynomial.cpp}
 \subsection{Linear Recurrence}
 \lstinputlisting[language=C++]{code/Math/LinearRecurrence.cpp}
-\subsection{Matrix Exponentiation}
-\lstinputlisting[language=C++]{code/Math/MatrixExponentiation.cpp}
 \subsection{Modular Square Root}
 \lstinputlisting[language=C++]{code/Math/ModSqrt.cpp}
-\subsection{Simplex}
-\lstinputlisting[language=C++]{code/Math/Simplex.cpp}
 
 \section{String Algorithms}
 \subsection{Aho-Corasick}
@@ -865,6 +957,18 @@ Where $A_i$ is the area of block $i$, and $C_{ij}$ is the Manhattan distance bet
 \lstinputlisting[language=C++]{code/Strings/XORHash.cpp}
 \subsection{Z Algorithm}
 \lstinputlisting[language=C++]{code/Strings/ZAlgorithm.cpp}
+\subsection{Minimal Cyclic Rotation (Booth)}
+\lstinputlisting[language=C++]{code/Strings/MinimalRotation.cpp}
+\subsection{Lyndon Factorization (Duval)}
+\lstinputlisting[language=C++]{code/Strings/LyndonFactorization.cpp}
+\subsection{Prefix-Function Automaton}
+\lstinputlisting[language=C++]{code/Strings/PrefixAutomaton.cpp}
+\subsection{2D Hashing}
+\lstinputlisting[language=C++]{code/Strings/Hash2D.cpp}
+\subsection{Main-Lorentz (Tandem Repeats)}
+\lstinputlisting[language=C++]{code/Strings/MainLorentz.cpp}
+\subsection{Suffix Array in O(n) (SA-IS)}
+\lstinputlisting[language=C++]{code/Strings/SAIS.cpp}
 
 \section{Computational Geometry}
 \subsection{Convex Hull}
@@ -887,15 +991,33 @@ Where $A_i$ is the area of block $i$, and $C_{ij}$ is the Manhattan distance bet
 \lstinputlisting[language=C++]{code/Geometry/PolarSort.cpp}
 \subsection{Polygon Area}
 \lstinputlisting[language=C++]{code/Geometry/PolygonArea.cpp}
+\subsection{Line and Segment Primitives}
+\lstinputlisting[language=C++]{code/Geometry/LinePrimitives.cpp}
+\subsection{Circle Primitives}
+\lstinputlisting[language=C++]{code/Geometry/CirclePrimitives.cpp}
+\subsection{Minimum Enclosing Circle}
+\lstinputlisting[language=C++]{code/Geometry/MinEnclosingCircle.cpp}
+\subsection{Half-Plane Intersection}
+\lstinputlisting[language=C++]{code/Geometry/HalfPlaneIntersection.cpp}
+\subsection{Rotating Calipers}
+\lstinputlisting[language=C++]{code/Geometry/RotatingCalipers.cpp}
+\subsection{Point in Convex Polygon}
+\lstinputlisting[language=C++]{code/Geometry/PointInConvexPolygon.cpp}
+\subsection{Polygon Cut}
+\lstinputlisting[language=C++]{code/Geometry/PolygonCut.cpp}
+\subsection{Minkowski Sum}
+\lstinputlisting[language=C++]{code/Geometry/MinkowskiSum.cpp}
+\subsection{Polygon Union Area}
+\lstinputlisting[language=C++]{code/Geometry/PolygonUnionArea.cpp}
+\subsection{Circle Union Area}
+\lstinputlisting[language=C++]{code/Geometry/CircleUnionArea.cpp}
+\subsection{Pick, Circumcenter and Incenter}
+\lstinputlisting[language=C++]{code/Geometry/TriangleFormulas.cpp}
 
 \subsection{Closest Pair of Points}
 \lstinputlisting[language=C++]{code/Geometry/ClosestPair.cpp}
-\subsection{Half-Plane Intersection}
-\lstinputlisting[language=C++]{code/Geometry/HalfPlaneIntersection.cpp}
 \subsection{Smallest Enclosing Circle}
 \lstinputlisting[language=C++]{code/Geometry/MinEnclosingCircle.cpp}
-\subsection{Rotating Calipers}
-\lstinputlisting[language=C++]{code/Geometry/RotatingCalipers.cpp}
 \subsection{Pick's Theorem}
 \lstinputlisting[language=C++]{code/Geometry/PickTheorem.cpp}
 
@@ -924,15 +1046,32 @@ Where $A_i$ is the area of block $i$, and $C_{ij}$ is the Manhattan distance bet
 \lstinputlisting[language=C++]{code/DynamicProgramming/RetrieveLIS.cpp}
 \subsection{SOS DP}
 \lstinputlisting[language=C++]{code/DynamicProgramming/SOSDP.cpp}
-\subsection{XOR Subset DP}
-\lstinputlisting[language=C++]{code/DynamicProgramming/XORSubsetDP.cpp}
-
-\subsection{Convex Hull Trick}
-\lstinputlisting[language=C++]{code/DynamicProgramming/ConvexHullTrick.cpp}
-\subsection{Knuth's Optimization}
+\subsection{Knuth Optimization}
 \lstinputlisting[language=C++]{code/DynamicProgramming/KnuthOptimization.cpp}
 \subsection{Divide and Conquer DP}
+% variant A
+\lstinputlisting[language=C++]{code/DynamicProgramming/DivideConquerOptimization.cpp}
+% variant B
 \lstinputlisting[language=C++]{code/DynamicProgramming/DnCDP.cpp}
+\subsection{Convex Hull Trick}
+% variant A
+\lstinputlisting[language=C++]{code/DataStructures/ConvexHullTrick.cpp}
+% variant B
+\lstinputlisting[language=C++]{code/DynamicProgramming/ConvexHullTrick.cpp}
+\subsection{Aliens Trick (WQS Binary Search)}
+\lstinputlisting[language=C++]{code/DynamicProgramming/AliensTrick.cpp}
+\subsection{Bitset Knapsack}
+\lstinputlisting[language=C++]{code/DynamicProgramming/BitsetKnapsack.cpp}
+\subsection{Slope Trick}
+\lstinputlisting[language=C++]{code/DynamicProgramming/SlopeTrick.cpp}
+\subsection{Broken-Profile DP}
+\lstinputlisting[language=C++]{code/DynamicProgramming/BrokenProfile.cpp}
+\subsection{Monotonic Queue DP}
+\lstinputlisting[language=C++]{code/DynamicProgramming/MonotonicQueueDP.cpp}
+\subsection{Monotone Minima}
+\lstinputlisting[language=C++]{code/DynamicProgramming/MonotoneMinima.cpp}
+\subsection{XOR Subset DP}
+\lstinputlisting[language=C++]{code/DynamicProgramming/XORSubsetDP.cpp}
 
 \section{Trees}
 \subsection{Diameter}
@@ -951,12 +1090,28 @@ Where $A_i$ is the area of block $i$, and $C_{ij}$ is the Manhattan distance bet
 \lstinputlisting[language=C++]{code/Trees/CentroidDecomposition.cpp}
 \subsection{Heavy-Light Decomposition}
 \lstinputlisting[language=C++]{code/Trees/HeavyLightDecomposition.cpp}
+\subsection{Link-Cut Tree}
+\lstinputlisting[language=C++]{code/Trees/LinkCutTree.cpp}
+\subsection{Top Tree}
+\lstinputlisting[language=C++]{code/Trees/TopTree.cpp}
 \subsection{Lowest Common Ancestor}
 \lstinputlisting[language=C++]{code/Trees/LCA.cpp}
+\subsection{LCA (Euler Tour + RMQ)}
+\lstinputlisting[language=C++]{code/Trees/LCAEulerTourRMQ.cpp}
 \subsection{Binary Lifting LCA}
 \lstinputlisting[language=C++]{code/Trees/BinaryLiftingLCA.cpp}
 \subsection{Successor DP}
 \lstinputlisting[language=C++]{code/Trees/SuccessorDP.cpp}
+\subsection{DSU on Tree}
+\lstinputlisting[language=C++]{code/Trees/DSUOnTree.cpp}
+\subsection{Rerooting DP}
+\lstinputlisting[language=C++]{code/Trees/RerootingDP.cpp}
+\subsection{Virtual Tree}
+\lstinputlisting[language=C++]{code/Trees/VirtualTree.cpp}
+\subsection{Prufer Code}
+\lstinputlisting[language=C++]{code/Trees/PruferCode.cpp}
+\subsection{Unrooted Tree Hashing}
+\lstinputlisting[language=C++]{code/Trees/UnrootedTreeHash.cpp}
 
 \section{Miscellaneous}
 \subsection{2D Prefix Sum}
@@ -971,6 +1126,20 @@ Where $A_i$ is the area of block $i$, and $C_{ij}$ is the Manhattan distance bet
 \lstinputlisting[language=C++]{code/Miscellaneous/MooresVoting.cpp}
 \subsection{Compiler Optimizations}
 \lstinputlisting[language=C++]{code/Miscellaneous/CompilerOptimizations.cpp}
+\subsection{Grundy Game}
+\lstinputlisting[language=C++]{code/Miscellaneous/GrundyGame.cpp}
+\subsection{Meet in the Middle}
+\lstinputlisting[language=C++]{code/Miscellaneous/MeetInTheMiddle.cpp}
+\subsection{C++ Template}
+\lstinputlisting[language=C++]{code/Miscellaneous/Template.cpp}
+\subsection{Stress Test Script}
+\lstinputlisting[language=bash]{code/Miscellaneous/StressTest.sh}
+\subsection{Josephus Problem}
+\lstinputlisting[language=C++]{code/Miscellaneous/Josephus.cpp}
+\subsection{Date Utilities}
+\lstinputlisting[language=C++]{code/Miscellaneous/DateUtils.cpp}
+\subsection{Nim Variants Notes}
+\lstinputlisting[language=C++]{code/Miscellaneous/NimVariants.cpp}
 
 \subsection{Sprague-Grundy}
 \lstinputlisting[language=C++]{code/Miscellaneous/SpragueGrundy.cpp}
