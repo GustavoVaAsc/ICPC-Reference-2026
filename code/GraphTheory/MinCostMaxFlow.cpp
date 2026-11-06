@@ -6,6 +6,12 @@ using ll = long long;
 // 2) K disjoint paths with minimum total cost.
 // 3) Flow with capacities and optimization objective (minimize total cost).
 // Complexity: O(F * M log N), F = total sent flow.
+// Precondition: all initial edge costs must be non-negative; otherwise the returned cost may be wrong
+// (potentials start at 0, so Dijkstra requires the reduced costs to stay non-negative; e.g. for
+// s->a(0), s->b(0), a->b(-5), a->t(0), b->t(0) it returns cost -10 instead of the correct -5). To
+// support negative costs, replace the vector<ll> pot(n, 0) initialisation with Bellman-Ford/SPFA
+// potentials; note that a negative-cost cycle in the residual graph makes the flow unbounded and
+// this solver does not terminate.
 
 struct MinCostMaxFlow {
     struct Edge {

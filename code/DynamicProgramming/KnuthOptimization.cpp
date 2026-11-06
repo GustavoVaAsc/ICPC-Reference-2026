@@ -6,6 +6,8 @@ using ll = long long;
 // with opt[l][r-1] <= opt[l][r] <= opt[l+1][r].
 // Typical complexity: O(N^2) instead of O(N^3).
 // Common use cases: optimal BST / optimal merge-like interval DP with quadrangle inequality.
+// Caveat: Knuth's bound needs the quadrangle inequality and interval monotonicity; the shipped intervalCost
+// meets the former with equality, but the latter needs a[i] >= 0, else the search range may miss the optimum (wrong answer).
 
 const ll KNUTH_INF = (ll)4e18;
 
@@ -35,14 +37,13 @@ ll knuthOptimization(const vector<ll>& a) {
             int r = l + len - 1;
             dp[l][r] = KNUTH_INF;
 
+            // Knuth bound: opt[l][r-1] <= opt[l][r] <= opt[l+1][r]; k splits as [l..k] + [k+1..r],
+            // so k must stay in [l, r-1] (the raw bound may reach r when len == 2).
             int start = opt[l][r - 1];
-            int finish = opt[l + 1][r];
-            if (start > finish) swap(start, finish);
+            int finish = min(opt[l + 1][r], r - 1);
 
             for (int k = start; k <= finish; k++) {
-                ll left = (k > l) ? dp[l][k - 1] : 0;
-                ll right = (k < r) ? dp[k + 1][r] : 0;
-                ll cand = left + right + intervalCost(l, r, pref);
+                ll cand = dp[l][k] + dp[k + 1][r] + intervalCost(l, r, pref);
                 if (cand < dp[l][r]) {
                     dp[l][r] = cand;
                     opt[l][r] = k;
